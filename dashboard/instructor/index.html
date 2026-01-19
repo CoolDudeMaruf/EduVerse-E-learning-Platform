@@ -1,0 +1,2227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instructor Dashboard - EduVerse</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="css/instructor-dashboard.css">
+</head>
+
+<body>
+    <!-- Mobile Menu Toggle -->
+    <button class="mobile-menu-toggle" id="mobileMenuToggle">
+        <span class="material-icons">menu</span>
+    </button>
+
+    <!-- Mobile Backdrop -->
+    <div class="nav-backdrop" id="navBackdrop"></div>
+
+    <!-- Navigation -->
+    <nav class="dashboard-nav" id="dashboardNav">
+        <div class="nav-brand">
+            <span class="material-icons">school</span>
+            <span class="brand-text">EduVerse</span>
+        </div>
+        <div class="nav-menu">
+            <!-- Main Section -->
+            <div class="nav-group">
+                <div class="nav-section-title">
+                    <span class="material-icons">layers</span>
+                    Main
+                </div>
+                <a href="#overview" class="nav-item active">
+                    <span class="material-icons">dashboard</span>
+                    <span>Overview</span>
+                    <span class="nav-badge">New</span>
+                </a>
+                <a href="#courses" class="nav-item">
+                    <span class="material-icons">video_library</span>
+                    <span>My Courses</span>
+                    <span class="nav-count">12</span>
+                </a>
+                <a href="#analytics" class="nav-item">
+                    <span class="material-icons">analytics</span>
+                    <span>Analytics</span>
+                </a>
+            </div>
+
+            <!-- Manage Section -->
+            <div class="nav-group">
+                <div class="nav-section-title">
+                    <span class="material-icons">tune</span>
+                    Manage
+                </div>
+                <a href="#students" class="nav-item">
+                    <span class="material-icons">people</span>
+                    <span>Students</span>
+                    <span class="nav-count">1,547</span>
+                </a>
+            </div>
+
+            <!-- Growth Section -->
+            <div class="nav-group">
+                <div class="nav-section-title">
+                    <span class="material-icons">trending_up</span>
+                    Growth
+                </div>
+                <a href="#revenue" class="nav-item">
+                    <span class="material-icons">attach_money</span>
+                    <span>Revenue</span>
+                </a>
+            </div>
+
+            <!-- Account Section -->
+            <div class="nav-group">
+                <div class="nav-section-title">
+                    <span class="material-icons">account_circle</span>
+                    Account
+                </div>
+                <a href="#profile" class="nav-item">
+                    <span class="material-icons">person</span>
+                    <span>Profile</span>
+                </a>
+                <a href="#settings" class="nav-item">
+                    <span class="material-icons">settings</span>
+                    <span>Settings</span>
+                </a>
+                <a href="#notifications" class="nav-item">
+                    <span class="material-icons">notifications</span>
+                    <span>Notifications</span>
+                    <span class="nav-notification">3</span>
+                </a>
+            </div>
+        </div>
+        <div class="nav-footer">
+            <div class="user-profile">
+                <div style="position: relative;">
+                    <img src="https://ui-avatars.com/api/?name=Instructor&background=6366f1&color=fff&size=40"
+                        alt="Profile" class="profile-img">
+                    <span class="online-indicator"></span>
+                </div>
+                <div class="profile-info">
+                    <span class="profile-name">Instructor Name</span>
+                    <span class="profile-role">Instructor</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="dashboard-main">
+        <!-- Overview Section -->
+        <section id="overview" class="dashboard-section active">
+            <div class="section-header">
+                <h1>Dashboard Overview</h1>
+                <button class="btn-primary" onclick="showCreateCourseModal()">
+                    <span class="material-icons">add</span>
+                    Create New Course
+                </button>
+            </div>
+
+            <!-- Quick Stats -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: #4CAF50;">
+                        <span class="material-icons">school</span>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-value" id="totalStudents">0</span>
+                        <span class="stat-label">Total Students</span>
+                        <span class="stat-change positive">+12% this month</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: #2196F3;">
+                        <span class="material-icons">video_library</span>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-value" id="totalCourses">0</span>
+                        <span class="stat-label">Active Courses</span>
+                        <span class="stat-change positive">+2 this month</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: #FF9800;">
+                        <span class="material-icons">attach_money</span>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-value" id="totalEarnings">$0</span>
+                        <span class="stat-label">Total Earnings</span>
+                        <span class="stat-change positive">+18% this month</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: #9C27B0;">
+                        <span class="material-icons">star</span>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-value" id="avgRating">0.0</span>
+                        <span class="stat-label">Average Rating</span>
+                        <span class="stat-change positive">+0.3 this month</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charts Row -->
+            <div class="charts-row">
+                <div class="chart-card">
+                    <h3>Student Enrollment Trends</h3>
+                    <canvas id="enrollmentChart"></canvas>
+                </div>
+                <div class="chart-card">
+                    <h3>Revenue Overview</h3>
+                    <canvas id="revenueChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Recent Activity -->
+            <div class="activity-section">
+                <h2>Recent Activity</h2>
+                <div class="activity-feed" id="activityFeed">
+                    <!-- Activity items will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- My Courses Section -->
+        <section id="courses" class="dashboard-section">
+            <div class="section-header">
+                <h1>My Courses</h1>
+                <div class="header-actions">
+                    <div class="search-box">
+                        <span class="material-icons">search</span>
+                        <input type="text" placeholder="Search courses..." id="courseSearch">
+                    </div>
+                    <select id="courseFilter" class="filter-select">
+                        <option value="all">All Courses</option>
+                        <option value="published">Published</option>
+                        <option value="draft">Draft</option>
+                        <option value="archived">Archived</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="courses-grid" id="coursesGrid">
+                <!-- Course cards will be populated by JavaScript -->
+            </div>
+        </section>
+
+        <!-- Analytics Section -->
+        <section id="analytics" class="dashboard-section">
+            <div class="section-header">
+                <h1>Advanced Analytics</h1>
+                <div class="date-range-picker">
+                    <input type="date" id="startDate">
+                    <span>to</span>
+                    <input type="date" id="endDate">
+                    <button class="btn-secondary" onclick="filterAnalytics()">Apply</button>
+                </div>
+            </div>
+
+            <!-- Engagement Metrics -->
+            <div class="analytics-grid">
+                <div class="analytics-card">
+                    <h3>Student Engagement</h3>
+                    <canvas id="engagementChart"></canvas>
+                </div>
+                <div class="analytics-card">
+                    <h3>Content Performance Heatmap</h3>
+                    <div id="heatmapContainer"></div>
+                </div>
+                <div class="analytics-card">
+                    <h3>Completion Rates</h3>
+                    <canvas id="completionChart"></canvas>
+                </div>
+                <div class="analytics-card">
+                    <h3>Discussion Forum Activity</h3>
+                    <canvas id="forumChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Export Options -->
+            <div class="export-section">
+                <button class="btn-outline" onclick="exportReport('pdf')">
+                    <span class="material-icons">picture_as_pdf</span>
+                    Export as PDF
+                </button>
+                <button class="btn-outline" onclick="exportReport('csv')">
+                    <span class="material-icons">table_chart</span>
+                    Export as CSV
+                </button>
+            </div>
+        </section>
+
+        <!-- Students Section -->
+        <section id="students" class="dashboard-section">
+            <div class="section-header">
+                <h1>Student Management</h1>
+                <div class="header-actions">
+                    <div class="search-box">
+                        <span class="material-icons">search</span>
+                        <input type="text" placeholder="Search students..." id="studentSearch">
+                    </div>
+                </div>
+            </div>
+
+            <div class="students-container">
+                <div class="students-list" id="studentsList">
+                    <!-- Student cards will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Revenue Section -->
+        <section id="revenue" class="dashboard-section">
+            <div class="section-header">
+                <h1>Revenue & Monetization</h1>
+            </div>
+
+            <!-- Earnings Overview -->
+            <div class="earnings-cards">
+                <div class="earnings-card">
+                    <h3>Total Earnings</h3>
+                    <p class="earnings-amount">$0.00</p>
+                    <span class="earnings-period">All time</span>
+                </div>
+                <div class="earnings-card">
+                    <h3>This Month</h3>
+                    <p class="earnings-amount">$0.00</p>
+                    <span class="earnings-change positive">+15%</span>
+                </div>
+                <div class="earnings-card">
+                    <h3>Pending Payout</h3>
+                    <p class="earnings-amount">$0.00</p>
+                    <span class="earnings-date">Next: Dec 1, 2025</span>
+                </div>
+            </div>
+
+            <!-- Revenue Chart -->
+            <div class="revenue-chart-container">
+                <h3>Revenue Trends</h3>
+                <canvas id="revenueTrendChart"></canvas>
+            </div>
+
+            <!-- Course Pricing -->
+            <div class="pricing-section">
+                <h2>Course Pricing Management</h2>
+                <div class="pricing-list" id="pricingList">
+                    <!-- Pricing items will be listed here -->
+                </div>
+            </div>
+
+            <!-- Coupon Management -->
+            <div class="coupon-section">
+                <div class="section-header">
+                    <h2>Coupon Management</h2>
+                    <button class="btn-primary" onclick="createCoupon()">
+                        <span class="material-icons">local_offer</span>
+                        Create Coupon
+                    </button>
+                </div>
+
+                <!-- Coupon Stats -->
+                <div class="coupon-stats">
+                    <div class="stat-card">
+                        <span class="material-icons">confirmation_number</span>
+                        <div>
+                            <h3 id="totalCoupons">0</h3>
+                            <p>Total Coupons</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="material-icons">check_circle</span>
+                        <div>
+                            <h3 id="activeCoupons">0</h3>
+                            <p>Active Coupons</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="material-icons">redeem</span>
+                        <div>
+                            <h3 id="totalRedemptions">0</h3>
+                            <p>Total Redemptions</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="material-icons">savings</span>
+                        <div>
+                            <h3 id="totalDiscount">$0</h3>
+                            <p>Total Discount Given</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Coupon Filters -->
+                <div class="coupon-filters">
+                    <div class="filter-group">
+                        <label for="couponTypeFilter">Type:</label>
+                        <select id="couponTypeFilter" onchange="filterCoupons()">
+                            <option value="all">All Coupons</option>
+                            <option value="overall">Overall (All Courses)</option>
+                            <option value="specific">Specific Course</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="couponStatusFilter">Status:</label>
+                        <select id="couponStatusFilter" onchange="filterCoupons()">
+                            <option value="all">All Status</option>
+                            <option value="active">Active</option>
+                            <option value="expired">Expired</option>
+                            <option value="disabled">Disabled</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <input type="text" id="couponSearchInput" placeholder="Search coupon code..."
+                            onkeyup="filterCoupons()">
+                    </div>
+                </div>
+
+                <!-- Coupon List -->
+                <div class="coupon-list" id="couponList">
+                    <!-- Coupons will be listed here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Profile Section -->
+        <section id="profile" class="dashboard-section">
+            <div class="section-header">
+                <h1>My Profile</h1>
+            </div>
+
+            <div class="profile-container">
+                <!-- Profile Header -->
+                <div class="profile-header-card">
+                    <div class="profile-banner"></div>
+                    <div class="profile-main-info">
+                        <div class="profile-avatar-section">
+                            <img src="https://ui-avatars.com/api/?name=Instructor&background=4A90E2&color=fff&size=120"
+                                alt="Profile" class="profile-avatar-large">
+                            <button class="btn-change-photo" onclick="changeProfilePhoto()">
+                                <span class="material-icons">camera_alt</span>
+                            </button>
+                        </div>
+                        <div class="profile-details">
+                            <h2>Instructor Name</h2>
+                            <p class="profile-role-badge">Instructor</p>
+                            <p class="profile-email">instructor@eduverse.com</p>
+                            <div class="profile-stats">
+                                <div class="stat-item">
+                                    <span class="material-icons">school</span>
+                                    <span><strong>1,547</strong> Students</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="material-icons">video_library</span>
+                                    <span><strong>12</strong> Courses</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="material-icons">star</span>
+                                    <span><strong>4.8</strong> Rating</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Profile Information Cards -->
+                <div class="profile-info-grid">
+                    <!-- Personal Information -->
+                    <div class="info-card">
+                        <div class="info-card-header">
+                            <h3><span class="material-icons">person</span> Personal Information</h3>
+                            <button class="btn-icon" onclick="editSection('personal')">
+                                <span class="material-icons">edit</span>
+                            </button>
+                        </div>
+                        <div class="info-card-body">
+                            <div class="info-row">
+                                <span class="info-label">Full Name</span>
+                                <span class="info-value">Instructor Name</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Email</span>
+                                <span class="info-value">instructor@eduverse.com</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Phone</span>
+                                <span class="info-value">+1 (555) 123-4567</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Location</span>
+                                <span class="info-value">San Francisco, CA</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Professional Information -->
+                    <div class="info-card">
+                        <div class="info-card-header">
+                            <h3><span class="material-icons">work</span> Professional Information</h3>
+                            <button class="btn-icon" onclick="editSection('professional')">
+                                <span class="material-icons">edit</span>
+                            </button>
+                        </div>
+                        <div class="info-card-body">
+                            <div class="info-row">
+                                <span class="info-label">Title</span>
+                                <span class="info-value">Senior Developer & Instructor</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Specialization</span>
+                                <span class="info-value">Web Development, JavaScript</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Experience</span>
+                                <span class="info-value">8+ years</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Member Since</span>
+                                <span class="info-value">January 2023</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bio Section -->
+                    <div class="info-card full-width">
+                        <div class="info-card-header">
+                            <h3><span class="material-icons">description</span> Biography</h3>
+                            <button class="btn-icon" onclick="editSection('bio')">
+                                <span class="material-icons">edit</span>
+                            </button>
+                        </div>
+                        <div class="info-card-body">
+                            <p class="bio-text">Passionate educator with over 8 years of experience in web development.
+                                Specialized in teaching JavaScript, React, and modern web technologies. Committed to
+                                helping students achieve their learning goals through engaging and practical courses.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Social Links -->
+                    <div class="info-card">
+                        <div class="info-card-header">
+                            <h3><span class="material-icons">link</span> Social Links</h3>
+                            <button class="btn-icon" onclick="editSection('social')">
+                                <span class="material-icons">edit</span>
+                            </button>
+                        </div>
+                        <div class="info-card-body">
+                            <div class="social-links-list">
+                                <a href="#" class="social-link-item">
+                                    <span class="material-icons">language</span>
+                                    <span>website.com</span>
+                                </a>
+                                <a href="#" class="social-link-item">
+                                    <span class="material-icons">link</span>
+                                    <span>linkedin.com/in/instructor</span>
+                                </a>
+                                <a href="#" class="social-link-item">
+                                    <span class="material-icons">link</span>
+                                    <span>github.com/instructor</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Account Security -->
+                    <div class="info-card">
+                        <div class="info-card-header">
+                            <h3><span class="material-icons">security</span> Account Security</h3>
+                        </div>
+                        <div class="info-card-body">
+                            <button class="btn-secondary full-width" onclick="changePassword()">
+                                <span class="material-icons">lock</span>
+                                Change Password
+                            </button>
+                            <button class="btn-secondary full-width" onclick="enable2FA()" style="margin-top: 12px;">
+                                <span class="material-icons">verified_user</span>
+                                Enable Two-Factor Authentication
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Settings Section -->
+        <section id="settings" class="dashboard-section">
+            <div class="section-header">
+                <h1>Settings</h1>
+            </div>
+
+            <div class="settings-container">
+                <!-- Settings Navigation -->
+                <div class="settings-sidebar">
+                    <div class="settings-nav-item active" data-tab="general">
+                        <span class="material-icons">tune</span>
+                        <span>General</span>
+                    </div>
+                    <div class="settings-nav-item" data-tab="preferences">
+                        <span class="material-icons">palette</span>
+                        <span>Preferences</span>
+                    </div>
+                    <div class="settings-nav-item" data-tab="notifications">
+                        <span class="material-icons">notifications</span>
+                        <span>Notifications</span>
+                    </div>
+                    <div class="settings-nav-item" data-tab="privacy">
+                        <span class="material-icons">privacy_tip</span>
+                        <span>Privacy & Security</span>
+                    </div>
+                    <div class="settings-nav-item" data-tab="payment">
+                        <span class="material-icons">payment</span>
+                        <span>Payment Methods</span>
+                    </div>
+                </div>
+
+                <!-- Settings Content -->
+                <div class="settings-content">
+                    <!-- General Settings -->
+                    <div class="settings-panel active" data-panel="general">
+                        <h2>General Settings</h2>
+                        <div class="settings-section">
+                            <div class="setting-item">
+                                <div class="setting-info">
+                                    <h4>Language</h4>
+                                    <p>Choose your preferred language</p>
+                                </div>
+                                <select class="setting-control">
+                                    <option value="en">English</option>
+                                    <option value="es">Spanish</option>
+                                    <option value="fr">French</option>
+                                    <option value="de">German</option>
+                                </select>
+                            </div>
+                            <div class="setting-item">
+                                <div class="setting-info">
+                                    <h4>Time Zone</h4>
+                                    <p>Set your local time zone</p>
+                                </div>
+                                <select class="setting-control">
+                                    <option value="PST">Pacific Time (PST)</option>
+                                    <option value="EST">Eastern Time (EST)</option>
+                                    <option value="CST">Central Time (CST)</option>
+                                    <option value="MST">Mountain Time (MST)</option>
+                                </select>
+                            </div>
+                            <div class="setting-item">
+                                <div class="setting-info">
+                                    <h4>Date Format</h4>
+                                    <p>Choose how dates are displayed</p>
+                                </div>
+                                <select class="setting-control">
+                                    <option value="MM/DD/YYYY">MM/DD/YYYY</option>
+                                    <option value="DD/MM/YYYY">DD/MM/YYYY</option>
+                                    <option value="YYYY-MM-DD">YYYY-MM-DD</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Preferences Settings -->
+                    <div class="settings-panel" data-panel="preferences">
+                        <h2>Preferences</h2>
+                        <div class="settings-section">
+                            <div class="setting-item">
+                                <div class="setting-info">
+                                    <h4>Dark Mode</h4>
+                                    <p>Enable dark theme for better viewing</p>
+                                </div>
+                                <label class="switch">
+                                    <input type="checkbox" checked>
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <div class="setting-item">
+                                <div class="setting-info">
+                                    <h4>Auto-Save Drafts</h4>
+                                    <p>Automatically save course drafts</p>
+                                </div>
+                                <label class="switch">
+                                    <input type="checkbox" checked>
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <div class="setting-item">
+                                <div class="setting-info">
+                                    <h4>Show Student Progress</h4>
+                                    <p>Display student progress in dashboard</p>
+                                </div>
+                                <label class="switch">
+                                    <input type="checkbox" checked>
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Notification Settings -->
+                    <div class="settings-panel" data-panel="notifications">
+                        <h2>Notification Preferences</h2>
+                        <div class="settings-section">
+                            <h3>Email Notifications</h3>
+                            <div class="setting-item">
+                                <div class="setting-info">
+                                    <h4>New Student Enrollments</h4>
+                                    <p>Get notified when students enroll</p>
+                                </div>
+                                <label class="switch">
+                                    <input type="checkbox" checked>
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <div class="setting-item">
+                                <div class="setting-info">
+                                    <h4>Course Reviews</h4>
+                                    <p>Notifications for new course reviews</p>
+                                </div>
+                                <label class="switch">
+                                    <input type="checkbox" checked>
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <div class="setting-item">
+                                <div class="setting-info">
+                                    <h4>Revenue Updates</h4>
+                                    <p>Monthly revenue reports</p>
+                                </div>
+                                <label class="switch">
+                                    <input type="checkbox" checked>
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="settings-section">
+                            <h3>Push Notifications</h3>
+                            <div class="setting-item">
+                                <div class="setting-info">
+                                    <h4>Student Questions</h4>
+                                    <p>Get alerts for student questions</p>
+                                </div>
+                                <label class="switch">
+                                    <input type="checkbox">
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <div class="setting-item">
+                                <div class="setting-info">
+                                    <h4>Course Milestones</h4>
+                                    <p>Alerts for course achievements</p>
+                                </div>
+                                <label class="switch">
+                                    <input type="checkbox" checked>
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Privacy Settings -->
+                    <div class="settings-panel" data-panel="privacy">
+                        <h2>Privacy & Security</h2>
+                        <div class="settings-section">
+                            <div class="setting-item">
+                                <div class="setting-info">
+                                    <h4>Profile Visibility</h4>
+                                    <p>Make your profile visible to students</p>
+                                </div>
+                                <label class="switch">
+                                    <input type="checkbox" checked>
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <div class="setting-item">
+                                <div class="setting-info">
+                                    <h4>Show Email Address</h4>
+                                    <p>Display email on your public profile</p>
+                                </div>
+                                <label class="switch">
+                                    <input type="checkbox">
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <div class="setting-item">
+                                <div class="setting-info">
+                                    <h4>Two-Factor Authentication</h4>
+                                    <p>Add an extra layer of security</p>
+                                </div>
+                                <button class="btn-secondary">Enable</button>
+                            </div>
+                            <div class="setting-item">
+                                <div class="setting-info">
+                                    <h4>Active Sessions</h4>
+                                    <p>Manage your logged-in devices</p>
+                                </div>
+                                <button class="btn-secondary">View Sessions</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Payment Settings -->
+                    <div class="settings-panel" data-panel="payment">
+                        <h2>Payment Methods</h2>
+                        <div class="settings-section">
+                            <div class="payment-methods-list">
+                                <div class="payment-method-item">
+                                    <div class="payment-icon">
+                                        <span class="material-icons">credit_card</span>
+                                    </div>
+                                    <div class="payment-info">
+                                        <h4>PayPal</h4>
+                                        <p>instructor@eduverse.com</p>
+                                    </div>
+                                    <button class="btn-icon" onclick="editPaymentMethod('paypal')">
+                                        <span class="material-icons">edit</span>
+                                    </button>
+                                </div>
+                                <div class="payment-method-item">
+                                    <div class="payment-icon">
+                                        <span class="material-icons">account_balance</span>
+                                    </div>
+                                    <div class="payment-info">
+                                        <h4>Bank Transfer</h4>
+                                        <p>••••1234</p>
+                                    </div>
+                                    <button class="btn-icon" onclick="editPaymentMethod('bank')">
+                                        <span class="material-icons">edit</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <button class="btn-primary" onclick="addPaymentMethod()" style="margin-top: 20px;">
+                                <span class="material-icons">add</span>
+                                Add Payment Method
+                            </button>
+                        </div>
+                        <div class="settings-section">
+                            <h3>Payout Schedule</h3>
+                            <div class="setting-item">
+                                <div class="setting-info">
+                                    <h4>Automatic Payouts</h4>
+                                    <p>Receive payouts automatically on the 1st of each month</p>
+                                </div>
+                                <label class="switch">
+                                    <input type="checkbox" checked>
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <div class="info-box">
+                                <span class="material-icons">info</span>
+                                <p>Minimum payout threshold: <strong>$50.00</strong></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Notifications Section -->
+        <section id="notifications" class="dashboard-section">
+            <div class="section-header">
+                <h1>Notifications</h1>
+                <div class="header-actions">
+                    <button class="btn-secondary" onclick="markAllAsRead()">
+                        <span class="material-icons">done_all</span>
+                        Mark All as Read
+                    </button>
+                    <button class="btn-secondary" onclick="clearAllNotifications()">
+                        <span class="material-icons">clear_all</span>
+                        Clear All
+                    </button>
+                </div>
+            </div>
+
+            <div class="notifications-container">
+                <!-- Notification Filters -->
+                <div class="notification-filters">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="unread">Unread</button>
+                    <button class="filter-btn" data-filter="enrollments">Enrollments</button>
+                    <button class="filter-btn" data-filter="reviews">Reviews</button>
+                    <button class="filter-btn" data-filter="revenue">Revenue</button>
+                </div>
+
+                <!-- Notifications List -->
+                <div class="notifications-list">
+                    <div class="notification-item unread">
+                        <div class="notification-icon" style="background: var(--success-color);">
+                            <span class="material-icons">person_add</span>
+                        </div>
+                        <div class="notification-content">
+                            <h4>New Student Enrollment</h4>
+                            <p>John Smith enrolled in "Advanced JavaScript Course"</p>
+                            <span class="notification-time">2 hours ago</span>
+                        </div>
+                        <button class="btn-icon" onclick="markAsRead(this)">
+                            <span class="material-icons">close</span>
+                        </button>
+                    </div>
+
+                    <div class="notification-item unread">
+                        <div class="notification-icon" style="background: var(--warning-color);">
+                            <span class="material-icons">star</span>
+                        </div>
+                        <div class="notification-content">
+                            <h4>New Course Review</h4>
+                            <p>Sarah Johnson gave 5 stars to "React Masterclass"</p>
+                            <span class="notification-time">5 hours ago</span>
+                        </div>
+                        <button class="btn-icon" onclick="markAsRead(this)">
+                            <span class="material-icons">close</span>
+                        </button>
+                    </div>
+
+                    <div class="notification-item">
+                        <div class="notification-icon" style="background: var(--primary-color);">
+                            <span class="material-icons">attach_money</span>
+                        </div>
+                        <div class="notification-content">
+                            <h4>Revenue Milestone</h4>
+                            <p>You've earned $1,000 this month! 🎉</p>
+                            <span class="notification-time">1 day ago</span>
+                        </div>
+                        <button class="btn-icon" onclick="markAsRead(this)">
+                            <span class="material-icons">close</span>
+                        </button>
+                    </div>
+
+                    <div class="notification-item">
+                        <div class="notification-icon" style="background: var(--info-color);">
+                            <span class="material-icons">question_answer</span>
+                        </div>
+                        <div class="notification-content">
+                            <h4>New Question Posted</h4>
+                            <p>Michael Brown asked a question in "Python Basics"</p>
+                            <span class="notification-time">2 days ago</span>
+                        </div>
+                        <button class="btn-icon" onclick="markAsRead(this)">
+                            <span class="material-icons">close</span>
+                        </button>
+                    </div>
+
+                    <div class="notification-item">
+                        <div class="notification-icon" style="background: var(--success-color);">
+                            <span class="material-icons">certificate</span>
+                        </div>
+                        <div class="notification-content">
+                            <h4>Course Completion</h4>
+                            <p>15 students completed "Web Development Bootcamp"</p>
+                            <span class="notification-time">3 days ago</span>
+                        </div>
+                        <button class="btn-icon" onclick="markAsRead(this)">
+                            <span class="material-icons">close</span>
+                        </button>
+                    </div>
+
+                    <div class="notification-item">
+                        <div class="notification-icon" style="background: var(--warning-color);">
+                            <span class="material-icons">update</span>
+                        </div>
+                        <div class="notification-content">
+                            <h4>Platform Update</h4>
+                            <p>New analytics features are now available</p>
+                            <span class="notification-time">1 week ago</span>
+                        </div>
+                        <button class="btn-icon" onclick="markAsRead(this)">
+                            <span class="material-icons">close</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modals -->
+    <div id="createCourseModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('createCourseModal')">&times;</span>
+            <h2>Create New Course</h2>
+            <form id="createCourseForm">
+                <div class="form-row">
+                    <div class="form-group full-width">
+                        <label for="courseTitle">Course Title *</label>
+                        <input type="text" id="courseTitle" name="title" required placeholder="Enter course title"
+                            maxlength="100">
+                        <span class="form-error"></span>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="courseCategory">Category *</label>
+                        <select id="courseCategory" name="category" required>
+                            <option value="">Select a category</option>
+                            <option value="development">Development</option>
+                            <option value="business">Business</option>
+                            <option value="design">Design</option>
+                            <option value="marketing">Marketing</option>
+                            <option value="it-software">IT & Software</option>
+                            <option value="personal-development">Personal Development</option>
+                            <option value="photography">Photography</option>
+                            <option value="music">Music</option>
+                        </select>
+                        <span class="form-error"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="courseLevel">Level *</label>
+                        <select id="courseLevel" name="level" required>
+                            <option value="">Select level</option>
+                            <option value="beginner">Beginner</option>
+                            <option value="intermediate">Intermediate</option>
+                            <option value="advanced">Advanced</option>
+                            <option value="all-levels">All Levels</option>
+                        </select>
+                        <span class="form-error"></span>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="courseLanguage">Language *</label>
+                        <select id="courseLanguage" name="language" required>
+                            <option value="english">English</option>
+                            <option value="spanish">Spanish</option>
+                            <option value="french">French</option>
+                            <option value="german">German</option>
+                            <option value="chinese">Chinese</option>
+                            <option value="japanese">Japanese</option>
+                        </select>
+                        <span class="form-error"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="courseDuration">Duration (hours)</label>
+                        <input type="number" id="courseDuration" name="duration" min="1" max="500"
+                            placeholder="e.g., 12">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group full-width">
+                        <label for="courseType">Course Type *</label>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="courseType" value="premium" checked>
+                                <span class="radio-label">
+                                    <span class="material-icons">workspace_premium</span>
+                                    <div>
+                                        <strong>Premium Course</strong>
+                                        <small>Students pay to access this course</small>
+                                    </div>
+                                </span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="courseType" value="free">
+                                <span class="radio-label">
+                                    <span class="material-icons">card_giftcard</span>
+                                    <div>
+                                        <strong>Free Course</strong>
+                                        <small>Course is free for all students</small>
+                                    </div>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row" id="priceFieldsRow">
+                    <div class="form-group">
+                        <label for="coursePrice">Price ($) *</label>
+                        <input type="number" id="coursePrice" name="price" required min="0" step="0.01"
+                            placeholder="49.99">
+                        <span class="form-error"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="courseOriginalPrice">Original Price ($)</label>
+                        <input type="number" id="courseOriginalPrice" name="originalPrice" min="0" step="0.01"
+                            placeholder="99.99">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group full-width">
+                        <label for="courseThumbnail">Course Thumbnail</label>
+                        <div class="file-upload">
+                            <input type="file" id="courseThumbnail" name="thumbnail" accept="image/*">
+                            <div class="file-upload-preview" id="thumbnailPreview" style="display: none;">
+                                <img src="" alt="Thumbnail preview">
+                                <button type="button" class="remove-thumbnail"
+                                    onclick="removeThumbnail()">&times;</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group full-width">
+                        <label for="courseDescription">Description *</label>
+                        <textarea id="courseDescription" name="description" required rows="4"
+                            placeholder="Provide a detailed course description" maxlength="500"></textarea>
+                        <span class="form-error"></span>
+                        <small class="char-count">0/500 characters</small>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group full-width">
+                        <label for="courseRequirements">Requirements</label>
+                        <textarea id="courseRequirements" name="requirements" rows="3"
+                            placeholder="Enter each requirement on a new line"></textarea>
+                        <small>What should students know before taking this course?</small>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group full-width">
+                        <label for="courseLearning">What You'll Learn</label>
+                        <textarea id="courseLearning" name="learning" rows="3"
+                            placeholder="Enter each learning outcome on a new line"></textarea>
+                        <small>What will students learn from this course?</small>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary"
+                        onclick="closeModal('createCourseModal')">Cancel</button>
+                    <button type="submit" class="btn-primary">Create Course</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Edit Course Modal -->
+    <div id="editCourseModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('editCourseModal')">&times;</span>
+            <h2>Edit Course</h2>
+            <form id="editCourseForm">
+                <input type="hidden" id="editCourseId" name="courseId">
+
+                <div class="form-row">
+                    <div class="form-group full-width">
+                        <label for="editCourseTitle">Course Title *</label>
+                        <input type="text" id="editCourseTitle" name="title" required placeholder="Enter course title"
+                            maxlength="100">
+                        <span class="form-error"></span>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="editCourseCategory">Category *</label>
+                        <select id="editCourseCategory" name="category" required>
+                            <option value="">Select a category</option>
+                            <option value="development">Development</option>
+                            <option value="business">Business</option>
+                            <option value="design">Design</option>
+                            <option value="marketing">Marketing</option>
+                            <option value="it-software">IT & Software</option>
+                            <option value="personal-development">Personal Development</option>
+                            <option value="photography">Photography</option>
+                            <option value="music">Music</option>
+                        </select>
+                        <span class="form-error"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="editCourseLevel">Level *</label>
+                        <select id="editCourseLevel" name="level" required>
+                            <option value="">Select level</option>
+                            <option value="beginner">Beginner</option>
+                            <option value="intermediate">Intermediate</option>
+                            <option value="advanced">Advanced</option>
+                            <option value="all-levels">All Levels</option>
+                        </select>
+                        <span class="form-error"></span>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="editCourseLanguage">Language *</label>
+                        <select id="editCourseLanguage" name="language" required>
+                            <option value="english">English</option>
+                            <option value="spanish">Spanish</option>
+                            <option value="french">French</option>
+                            <option value="german">German</option>
+                            <option value="chinese">Chinese</option>
+                            <option value="japanese">Japanese</option>
+                        </select>
+                        <span class="form-error"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="editCourseDuration">Duration (hours)</label>
+                        <input type="number" id="editCourseDuration" name="duration" min="1" max="500"
+                            placeholder="e.g., 12">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group full-width">
+                        <label for="editCourseType">Course Type *</label>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="editCourseType" value="premium" checked>
+                                <span class="radio-label">
+                                    <span class="material-icons">workspace_premium</span>
+                                    <div>
+                                        <strong>Premium Course</strong>
+                                        <small>Students pay to access this course</small>
+                                    </div>
+                                </span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="editCourseType" value="free">
+                                <span class="radio-label">
+                                    <span class="material-icons">card_giftcard</span>
+                                    <div>
+                                        <strong>Free Course</strong>
+                                        <small>Course is free for all students</small>
+                                    </div>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row" id="editPriceFieldsRow">
+                    <div class="form-group">
+                        <label for="editCoursePrice">Price ($) *</label>
+                        <input type="number" id="editCoursePrice" name="price" required min="0" step="0.01"
+                            placeholder="49.99">
+                        <span class="form-error"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="editCourseOriginalPrice">Original Price ($)</label>
+                        <input type="number" id="editCourseOriginalPrice" name="originalPrice" min="0" step="0.01"
+                            placeholder="99.99">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group full-width">
+                        <label for="editCourseStatus">Course Status</label>
+                        <select id="editCourseStatus" name="status">
+                            <option value="draft">Draft</option>
+                            <option value="published">Published</option>
+                            <option value="archived">Archived</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group full-width">
+                        <label for="editCourseDescription">Description *</label>
+                        <textarea id="editCourseDescription" name="description" required rows="4"
+                            placeholder="Provide a detailed course description" maxlength="500"></textarea>
+                        <span class="form-error"></span>
+                        <small class="char-count">0/500 characters</small>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group full-width">
+                        <label for="editCourseRequirements">Requirements</label>
+                        <textarea id="editCourseRequirements" name="requirements" rows="3"
+                            placeholder="Enter each requirement on a new line"></textarea>
+                        <small>What should students know before taking this course?</small>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group full-width">
+                        <label for="editCourseLearning">What You'll Learn</label>
+                        <textarea id="editCourseLearning" name="learning" rows="3"
+                            placeholder="Enter each learning outcome on a new line"></textarea>
+                        <small>What will students learn from this course?</small>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" onclick="closeModal('editCourseModal')">Cancel</button>
+                    <button type="submit" class="btn-primary">Update Course</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Manage Course Content Modal -->
+    <div id="manageCourseContentModal" class="modal">
+        <div class="modal-content large">
+            <span class="close" onclick="closeModal('manageCourseContentModal')">&times;</span>
+            <h2 id="contentModalTitle">Manage Course Content</h2>
+
+            <div class="content-manager">
+                <div class="content-sidebar">
+                    <button class="btn-primary full-width" onclick="addSection()">
+                        <span class="material-icons">add</span>
+                        Add Section
+                    </button>
+                    <div class="sections-list" id="courseSectionsList">
+                        <!-- Sections will be listed here -->
+                    </div>
+                </div>
+
+                <div class="content-main">
+                    <div class="content-toolbar">
+                        <button class="btn-secondary" onclick="addLectureToSection()">
+                            <span class="material-icons">video_library</span>
+                            Add Lecture
+                        </button>
+                        <button class="btn-secondary" onclick="addQuizToSection()">
+                            <span class="material-icons">quiz</span>
+                            Add Quiz
+                        </button>
+                        <button class="btn-secondary" onclick="addResourceToSection()">
+                            <span class="material-icons">attach_file</span>
+                            Add Resource
+                        </button>
+                    </div>
+
+                    <div class="content-area" id="sectionContentArea">
+                        <div class="empty-state">
+                            <span class="material-icons">playlist_add</span>
+                            <p>Select a section or create one to start adding content</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Lecture Modal -->
+    <div id="addLectureModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('addLectureModal')">&times;</span>
+            <h2>Add Lecture</h2>
+            <form id="addLectureForm">
+                <div class="form-group">
+                    <label for="lectureTitle">Lecture Title *</label>
+                    <input type="text" id="lectureTitle" name="title" required
+                        placeholder="e.g., Introduction to JavaScript">
+                </div>
+
+                <div class="form-group">
+                    <label for="lectureDescription">Description</label>
+                    <textarea id="lectureDescription" name="description" rows="3"
+                        placeholder="Brief description of this lecture"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="lectureType">Lecture Type *</label>
+                    <select id="lectureType" name="type" required>
+                        <option value="video">Video</option>
+                        <option value="article">Article</option>
+                        <option value="presentation">Presentation</option>
+                    </select>
+                </div>
+
+                <div class="form-group" id="videoUploadGroup">
+                    <label for="lectureVideo">Upload Video</label>
+                    <input type="file" id="lectureVideo" name="video" accept="video/*">
+                    <small>Supported formats: MP4, MOV, AVI (Max: 2GB)</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="lectureDuration">Duration (minutes)</label>
+                    <input type="number" id="lectureDuration" name="duration" min="1" placeholder="e.g., 15">
+                </div>
+
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="lecturePreview" name="preview">
+                        <span>Allow preview for non-enrolled students</span>
+                    </label>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" onclick="closeModal('addLectureModal')">Cancel</button>
+                    <button type="submit" class="btn-primary">Add Lecture</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add Section Modal -->
+    <div id="addSectionModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('addSectionModal')">&times;</span>
+            <h2>Add Section</h2>
+            <form id="addSectionForm">
+                <div class="form-group">
+                    <label for="sectionTitle">Section Title *</label>
+                    <input type="text" id="sectionTitle" name="title" required placeholder="e.g., Getting Started">
+                </div>
+
+                <div class="form-group">
+                    <label for="sectionDescription">Section Description</label>
+                    <textarea id="sectionDescription" name="description" rows="3"
+                        placeholder="What will students learn in this section?"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="sectionOrder">Section Order</label>
+                    <input type="number" id="sectionOrder" name="order" min="1" placeholder="1">
+                    <small>Order in which this section appears</small>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" onclick="closeModal('addSectionModal')">Cancel</button>
+                    <button type="submit" class="btn-primary">Add Section</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add Quiz Modal -->
+    <div id="addQuizModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('addQuizModal')">&times;</span>
+            <h2>Add Quiz</h2>
+            <form id="addQuizForm">
+                <div class="form-group">
+                    <label for="quizTitle">Quiz Title *</label>
+                    <input type="text" id="quizTitle" name="title" required placeholder="e.g., Section 1 Quiz">
+                </div>
+
+                <div class="form-group">
+                    <label for="quizDescription">Description</label>
+                    <textarea id="quizDescription" name="description" rows="3"
+                        placeholder="What will this quiz cover?"></textarea>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="quizDuration">Duration (minutes) *</label>
+                        <input type="number" id="quizDuration" name="duration" required min="1" placeholder="e.g., 30">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="quizPassingScore">Passing Score (%) *</label>
+                        <input type="number" id="quizPassingScore" name="passingScore" required min="0" max="100"
+                            placeholder="e.g., 80">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="quizAttempts">Max Attempts</label>
+                        <input type="number" id="quizAttempts" name="maxAttempts" min="1"
+                            placeholder="Unlimited if empty">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="quizQuestions">Number of Questions *</label>
+                        <input type="number" id="quizQuestions" name="questionCount" required min="1"
+                            placeholder="e.g., 10">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="quizRandomize" name="randomize">
+                        <span>Randomize question order</span>
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="quizShowAnswers" name="showAnswers">
+                        <span>Show correct answers after completion</span>
+                    </label>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" onclick="closeModal('addQuizModal')">Cancel</button>
+                    <button type="submit" class="btn-primary">Add Quiz</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add Resource Modal -->
+    <div id="addResourceModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('addResourceModal')">&times;</span>
+            <h2>Add Resource</h2>
+            <form id="addResourceForm">
+                <div class="form-group">
+                    <label for="resourceTitle">Resource Title *</label>
+                    <input type="text" id="resourceTitle" name="title" required placeholder="e.g., Course Materials">
+                </div>
+
+                <div class="form-group">
+                    <label for="resourceDescription">Description</label>
+                    <textarea id="resourceDescription" name="description" rows="3"
+                        placeholder="Describe this resource"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="resourceType">Resource Type *</label>
+                    <select id="resourceType" name="type" required>
+                        <option value="">Select type</option>
+                        <option value="pdf">PDF Document</option>
+                        <option value="doc">Word Document</option>
+                        <option value="ppt">Presentation</option>
+                        <option value="zip">Archive (ZIP)</option>
+                        <option value="link">External Link</option>
+                        <option value="code">Code Files</option>
+                    </select>
+                </div>
+
+                <div class="form-group" id="resourceFileGroup">
+                    <label for="resourceFile">Upload File</label>
+                    <input type="file" id="resourceFile" name="file"
+                        accept=".pdf,.doc,.docx,.ppt,.pptx,.zip,.txt,.html,.css,.js">
+                    <small>Max file size: 100MB</small>
+                </div>
+
+                <div class="form-group" id="resourceLinkGroup" style="display: none;">
+                    <label for="resourceUrl">External URL</label>
+                    <input type="url" id="resourceUrl" name="url" placeholder="https://example.com/resource">
+                </div>
+
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="resourceDownloadable" name="downloadable" checked>
+                        <span>Allow students to download</span>
+                    </label>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" onclick="closeModal('addResourceModal')">Cancel</button>
+                    <button type="submit" class="btn-primary">Add Resource</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Course Analytics Modal -->
+    <div id="courseAnalyticsModal" class="modal">
+        <div class="modal-content large">
+            <span class="close" onclick="closeModal('courseAnalyticsModal')">&times;</span>
+            <h2 id="analyticsModalTitle">Course Analytics</h2>
+
+            <div class="analytics-dashboard">
+                <!-- Stats Overview -->
+                <div class="analytics-stats-grid">
+                    <div class="analytics-stat-card">
+                        <span class="material-icons">people</span>
+                        <div>
+                            <h3 id="analyticsStudentCount">0</h3>
+                            <p>Total Students</p>
+                        </div>
+                    </div>
+                    <div class="analytics-stat-card">
+                        <span class="material-icons">trending_up</span>
+                        <div>
+                            <h3 id="analyticsCompletionRate">0%</h3>
+                            <p>Completion Rate</p>
+                        </div>
+                    </div>
+                    <div class="analytics-stat-card">
+                        <span class="material-icons">star</span>
+                        <div>
+                            <h3 id="analyticsRating">0.0</h3>
+                            <p>Average Rating</p>
+                        </div>
+                    </div>
+                    <div class="analytics-stat-card">
+                        <span class="material-icons">attach_money</span>
+                        <div>
+                            <h3 id="analyticsRevenue">$0</h3>
+                            <p>Revenue</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Charts -->
+                <div class="analytics-charts-grid">
+                    <div class="analytics-chart-card">
+                        <h3>Enrollment Over Time</h3>
+                        <canvas id="courseEnrollmentChart"></canvas>
+                    </div>
+                    <div class="analytics-chart-card">
+                        <h3>Student Progress Distribution</h3>
+                        <canvas id="courseProgressChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Content Performance -->
+                <div class="analytics-content-section">
+                    <h3>Content Performance</h3>
+                    <div class="content-performance-list" id="contentPerformanceList">
+                        <!-- Content items will be listed here -->
+                    </div>
+                </div>
+
+                <!-- Student Feedback -->
+                <div class="analytics-feedback-section">
+                    <h3>Recent Reviews</h3>
+                    <div class="feedback-list" id="courseFeedbackList">
+                        <!-- Reviews will be listed here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Create Student Group Modal -->
+    <div id="createGroupModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('createGroupModal')">&times;</span>
+            <h2>Create Student Group</h2>
+            <form id="createGroupForm">
+                <div class="form-group">
+                    <label for="groupName">Group Name *</label>
+                    <input type="text" id="groupName" name="name" required placeholder="e.g., Beginner Cohort 2025">
+                    <span class="form-error"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="groupDescription">Description</label>
+                    <textarea id="groupDescription" name="description" rows="3"
+                        placeholder="What is this group for?"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="groupCourse">Associated Course</label>
+                    <select id="groupCourse" name="courseId">
+                        <option value="">All Courses</option>
+                        <!-- Courses will be populated dynamically -->
+                    </select>
+                    <small>Optional: Link this group to a specific course</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="groupColor">Group Color</label>
+                    <div class="color-picker">
+                        <label class="color-option">
+                            <input type="radio" name="color" value="#6366f1" checked>
+                            <span class="color-swatch" style="background: #6366f1;"></span>
+                        </label>
+                        <label class="color-option">
+                            <input type="radio" name="color" value="#ef4444">
+                            <span class="color-swatch" style="background: #ef4444;"></span>
+                        </label>
+                        <label class="color-option">
+                            <input type="radio" name="color" value="#10b981">
+                            <span class="color-swatch" style="background: #10b981;"></span>
+                        </label>
+                        <label class="color-option">
+                            <input type="radio" name="color" value="#f59e0b">
+                            <span class="color-swatch" style="background: #f59e0b;"></span>
+                        </label>
+                        <label class="color-option">
+                            <input type="radio" name="color" value="#8b5cf6">
+                            <span class="color-swatch" style="background: #8b5cf6;"></span>
+                        </label>
+                        <label class="color-option">
+                            <input type="radio" name="color" value="#ec4899">
+                            <span class="color-swatch" style="background: #ec4899;"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="groupMaxSize">Max Group Size</label>
+                    <input type="number" id="groupMaxSize" name="maxSize" min="1"
+                        placeholder="Leave empty for unlimited">
+                    <small>Maximum number of students in this group</small>
+                </div>
+
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="groupAutoEnroll" name="autoEnroll">
+                        <span>Auto-enroll new students</span>
+                    </label>
+                    <small>Automatically add new course enrollments to this group</small>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" onclick="closeModal('createGroupModal')">Cancel</button>
+                    <button type="submit" class="btn-primary">Create Group</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Manage Group Modal -->
+    <div id="manageGroupModal" class="modal">
+        <div class="modal-content large">
+            <span class="close" onclick="closeModal('manageGroupModal')">&times;</span>
+            <h2 id="manageGroupTitle">Manage Group</h2>
+
+            <div class="group-manager">
+                <div class="group-info-section">
+                    <div class="group-header">
+                        <div class="group-icon" id="groupIconDisplay">
+                            <span class="material-icons">group</span>
+                        </div>
+                        <div class="group-details">
+                            <h3 id="groupNameDisplay">Group Name</h3>
+                            <p id="groupDescDisplay">Group description</p>
+                            <div class="group-stats">
+                                <span><strong id="groupMemberCount">0</strong> Members</span>
+                                <span id="groupCourseDisplay"></span>
+                            </div>
+                        </div>
+                        <button class="btn-secondary" onclick="editGroupInfo()">
+                            <span class="material-icons">edit</span>
+                            Edit Info
+                        </button>
+                    </div>
+                </div>
+
+                <div class="group-tabs">
+                    <button class="group-tab active" onclick="switchGroupTab('members')">Members</button>
+                    <button class="group-tab" onclick="switchGroupTab('add')">Add Students</button>
+                    <button class="group-tab" onclick="switchGroupTab('activity')">Activity</button>
+                </div>
+
+                <div class="group-tab-content">
+                    <!-- Members Tab -->
+                    <div id="groupMembersTab" class="group-tab-pane active">
+                        <div class="members-toolbar">
+                            <div class="search-box">
+                                <span class="material-icons">search</span>
+                                <input type="text" id="groupMemberSearch" placeholder="Search members...">
+                            </div>
+                            <button class="btn-secondary" onclick="exportGroupMembers()">
+                                <span class="material-icons">download</span>
+                                Export
+                            </button>
+                        </div>
+                        <div class="group-members-list" id="groupMembersList">
+                            <!-- Members will be listed here -->
+                        </div>
+                    </div>
+
+                    <!-- Add Students Tab -->
+                    <div id="groupAddTab" class="group-tab-pane">
+                        <div class="add-students-section">
+                            <div class="search-box">
+                                <span class="material-icons">search</span>
+                                <input type="text" id="addStudentSearch" placeholder="Search students to add...">
+                            </div>
+                            <div class="available-students-list" id="availableStudentsList">
+                                <!-- Available students will be listed here -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Activity Tab -->
+                    <div id="groupActivityTab" class="group-tab-pane">
+                        <div class="activity-feed" id="groupActivityFeed">
+                            <!-- Activity will be listed here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Groups Dashboard Modal -->
+    <div id="groupsDashboardModal" class="modal">
+        <div class="modal-content large">
+            <span class="close" onclick="closeModal('groupsDashboardModal')">&times;</span>
+            <h2>Student Groups</h2>
+
+            <div class="groups-header">
+                <div class="search-box">
+                    <span class="material-icons">search</span>
+                    <input type="text" id="groupsSearch" placeholder="Search groups...">
+                </div>
+                <button class="btn-primary" onclick="showCreateGroupModal()">
+                    <span class="material-icons">add</span>
+                    Create New Group
+                </button>
+            </div>
+
+            <div class="groups-grid" id="groupsGrid">
+                <!-- Groups will be displayed here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Pricing Modal -->
+    <div id="editPricingModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('editPricingModal')">&times;</span>
+            <h2>Edit Course Pricing</h2>
+
+            <form id="editPricingForm">
+                <input type="hidden" id="editPricingCourseId" name="courseId">
+
+                <div class="form-group">
+                    <label for="editCourseName">Course Name:</label>
+                    <input type="text" id="editCourseName" readonly
+                        style="background: var(--hover-bg); cursor: not-allowed;">
+                </div>
+
+                <div class="form-group">
+                    <label for="editBasePrice">Base Price ($):</label>
+                    <input type="number" id="editBasePrice" name="basePrice" min="0" step="0.01" placeholder="99.99"
+                        required>
+                </div>
+
+                <div class="form-group">
+                    <label for="editDiscountPercentage">Discount Percentage (%):</label>
+                    <input type="number" id="editDiscountPercentage" name="discountPercentage" min="0" max="100"
+                        step="1" placeholder="0">
+                    <small style="color: var(--text-muted);">Leave 0 for no discount</small>
+                </div>
+
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="editDiscountActive" name="discountActive">
+                        <span>Discount is active</span>
+                    </label>
+                </div>
+
+                <div class="form-group"
+                    style="background: var(--hover-bg); padding: 16px; border-radius: 8px; margin-top: 16px;">
+                    <h3 style="margin: 0 0 12px 0; font-size: 14px; color: var(--text-secondary);">Price Preview</h3>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <p style="margin: 4px 0; color: var(--text-muted); font-size: 14px;">Base Price:</p>
+                            <p style="margin: 4px 0; color: var(--text-muted); font-size: 14px;">Discount:</p>
+                            <p
+                                style="margin: 8px 0 4px 0; color: var(--text-primary); font-size: 16px; font-weight: 600;">
+                                Final Price:</p>
+                        </div>
+                        <div style="text-align: right;">
+                            <p id="previewBasePrice"
+                                style="margin: 4px 0; color: var(--text-secondary); font-size: 14px;">$0.00</p>
+                            <p id="previewDiscount" style="margin: 4px 0; color: var(--danger-color); font-size: 14px;">
+                                -$0.00</p>
+                            <p id="previewFinalPrice"
+                                style="margin: 8px 0 4px 0; color: var(--success-color); font-size: 20px; font-weight: 700;">
+                                $0.00</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" onclick="closeModal('editPricingModal')">Cancel</button>
+                    <button type="submit" class="btn-primary">Update Pricing</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Create/Edit Coupon Modal -->
+    <div id="couponModal" class="modal">
+        <div class="modal-content modal-large">
+            <span class="close" onclick="closeModal('couponModal')">&times;</span>
+            <h2 id="couponModalTitle">Create New Coupon</h2>
+            <form id="couponForm">
+                <input type="hidden" id="couponId" name="couponId">
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="couponCode">Coupon Code *</label>
+                        <input type="text" id="couponCode" name="code" required placeholder="e.g., SUMMER2025"
+                            maxlength="20" style="text-transform: uppercase;">
+                        <span class="form-hint">Use uppercase letters, numbers, and hyphens only</span>
+                        <span class="form-error"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="couponType">Coupon Type *</label>
+                        <select id="couponType" name="type" required onchange="toggleCourseSelection()">
+                            <option value="">Select type</option>
+                            <option value="overall">Overall (All Courses)</option>
+                            <option value="specific">Specific Course</option>
+                        </select>
+                        <span class="form-error"></span>
+                    </div>
+                </div>
+
+                <div class="form-row" id="courseSelectionRow" style="display: none;">
+                    <div class="form-group full-width">
+                        <label for="couponCourse">Select Course *</label>
+                        <select id="couponCourse" name="courseId">
+                            <option value="">Choose a course</option>
+                            <!-- Will be populated dynamically -->
+                        </select>
+                        <span class="form-error"></span>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="discountType">Discount Type *</label>
+                        <select id="discountType" name="discountType" required onchange="updateDiscountPreview()">
+                            <option value="percentage">Percentage (%)</option>
+                            <option value="fixed">Fixed Amount ($)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="discountValue">Discount Value *</label>
+                        <input type="number" id="discountValue" name="discountValue" required min="1"
+                            placeholder="e.g., 20" oninput="updateDiscountPreview()">
+                        <span class="form-hint" id="discountHint">Enter percentage (1-100)</span>
+                        <span class="form-error"></span>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="startDate">Start Date *</label>
+                        <input type="datetime-local" id="startDate" name="startDate" required>
+                        <span class="form-error"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="endDate">End Date *</label>
+                        <input type="datetime-local" id="endDate" name="endDate" required>
+                        <span class="form-error"></span>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="usageLimit">Usage Limit</label>
+                        <input type="number" id="usageLimit" name="usageLimit" min="1" placeholder="Unlimited">
+                        <span class="form-hint">Leave empty for unlimited uses</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="minPurchase">Minimum Purchase Amount ($)</label>
+                        <input type="number" id="minPurchase" name="minPurchase" min="0" step="0.01" placeholder="0.00">
+                        <span class="form-hint">Minimum cart value to apply coupon</span>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group full-width">
+                        <label for="couponDescription">Description (Optional)</label>
+                        <textarea id="couponDescription" name="description" rows="3"
+                            placeholder="Internal notes about this coupon..."></textarea>
+                    </div>
+                </div>
+
+                <!-- Discount Preview -->
+                <div class="discount-preview-box" id="discountPreviewBox" style="display: none;">
+                    <h4>Discount Preview</h4>
+                    <div class="preview-calculation">
+                        <div class="preview-row">
+                            <span>Original Price:</span>
+                            <span id="previewOriginal">$99.00</span>
+                        </div>
+                        <div class="preview-row discount">
+                            <span>Discount:</span>
+                            <span id="previewDiscount">-$0.00</span>
+                        </div>
+                        <div class="preview-row total">
+                            <span>Final Price:</span>
+                            <span id="previewFinal">$99.00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" onclick="closeModal('couponModal')">Cancel</button>
+                    <button type="submit" class="btn-primary">
+                        <span class="material-icons">save</span>
+                        <span id="couponSubmitText">Create Coupon</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add Payment Method Modal -->
+    <div id="addPaymentModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('addPaymentModal')">&times;</span>
+            <h2>Add Payment Method</h2>
+            <form id="addPaymentForm">
+                <div class="form-group">
+                    <label for="paymentType">Payment Type *</label>
+                    <select id="paymentType" name="type" required onchange="togglePaymentFields()">
+                        <option value="">Select payment method</option>
+                        <option value="bank">Bank Account</option>
+                        <option value="paypal">PayPal</option>
+                        <option value="stripe">Stripe</option>
+                    </select>
+                </div>
+
+                <!-- Bank Account Fields -->
+                <div id="bankFields" style="display: none;">
+                    <div class="form-group">
+                        <label for="accountHolderName">Account Holder Name *</label>
+                        <input type="text" id="accountHolderName" name="holderName" placeholder="John Doe">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="bankName">Bank Name *</label>
+                            <input type="text" id="bankName" name="bankName" placeholder="Chase Bank">
+                        </div>
+                        <div class="form-group">
+                            <label for="accountType">Account Type *</label>
+                            <select id="accountType" name="accountType">
+                                <option value="checking">Checking</option>
+                                <option value="savings">Savings</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="routingNumber">Routing Number *</label>
+                            <input type="text" id="routingNumber" name="routingNumber" placeholder="123456789"
+                                maxlength="9">
+                        </div>
+                        <div class="form-group">
+                            <label for="accountNumber">Account Number *</label>
+                            <input type="text" id="accountNumber" name="accountNumber" placeholder="000123456789">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PayPal Fields -->
+                <div id="paypalFields" style="display: none;">
+                    <div class="form-group">
+                        <label for="paypalEmail">PayPal Email *</label>
+                        <input type="email" id="paypalEmail" name="paypalEmail" placeholder="your@email.com">
+                    </div>
+                </div>
+
+                <!-- Stripe Fields -->
+                <div id="stripeFields" style="display: none;">
+                    <div class="form-group">
+                        <label for="stripeEmail">Stripe Email *</label>
+                        <input type="email" id="stripeEmail" name="stripeEmail" placeholder="your@email.com">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="setPrimary" id="setPrimary">
+                        <span>Set as primary payment method</span>
+                    </label>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" onclick="closeModal('addPaymentModal')">Cancel</button>
+                    <button type="submit" class="btn-primary">
+                        <span class="material-icons">add</span>
+                        Add Method
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Edit Personal Information Modal -->
+    <div id="editPersonalModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('editPersonalModal')">&times;</span>
+            <h2>Edit Personal Information</h2>
+            <form id="editPersonalForm" onsubmit="savePersonalInfo(event)">
+                <div class="form-row">
+                    <div class="form-group full-width">
+                        <label for="editFullName">Full Name *</label>
+                        <input type="text" id="editFullName" name="fullName" required placeholder="Enter your full name"
+                            value="Instructor Name">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="editEmail">Email *</label>
+                        <input type="email" id="editEmail" name="email" required placeholder="your@email.com"
+                            value="instructor@eduverse.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="editPhone">Phone</label>
+                        <input type="tel" id="editPhone" name="phone" placeholder="+1 (555) 123-4567"
+                            value="+1 (555) 123-4567">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group full-width">
+                        <label for="editLocation">Location</label>
+                        <input type="text" id="editLocation" name="location" placeholder="City, Country"
+                            value="San Francisco, CA">
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary"
+                        onclick="closeModal('editPersonalModal')">Cancel</button>
+                    <button type="submit" class="btn-primary">
+                        <span class="material-icons">save</span>
+                        Save Changes
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Edit Professional Information Modal -->
+    <div id="editProfessionalModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('editProfessionalModal')">&times;</span>
+            <h2>Edit Professional Information</h2>
+            <form id="editProfessionalForm" onsubmit="saveProfessionalInfo(event)">
+                <div class="form-row">
+                    <div class="form-group full-width">
+                        <label for="editTitle">Professional Title *</label>
+                        <input type="text" id="editTitle" name="title" required
+                            placeholder="e.g., Senior Developer & Instructor" value="Senior Developer & Instructor">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group full-width">
+                        <label for="editSpecialization">Specialization *</label>
+                        <input type="text" id="editSpecialization" name="specialization" required
+                            placeholder="e.g., Web Development, JavaScript" value="Web Development, JavaScript">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="editExperience">Years of Experience</label>
+                        <select id="editExperience" name="experience">
+                            <option value="1-2">1-2 years</option>
+                            <option value="3-5">3-5 years</option>
+                            <option value="5-8">5-8 years</option>
+                            <option value="8+" selected>8+ years</option>
+                            <option value="10+">10+ years</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary"
+                        onclick="closeModal('editProfessionalModal')">Cancel</button>
+                    <button type="submit" class="btn-primary">
+                        <span class="material-icons">save</span>
+                        Save Changes
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Edit Biography Modal -->
+    <div id="editBioModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('editBioModal')">&times;</span>
+            <h2>Edit Biography</h2>
+            <form id="editBioForm" onsubmit="saveBioInfo(event)">
+                <div class="form-row">
+                    <div class="form-group full-width">
+                        <label for="editBio">Biography *</label>
+                        <textarea id="editBio" name="bio" required rows="6"
+                            placeholder="Write a compelling biography..."
+                            maxlength="500">Passionate educator with over 8 years of experience in web development. Specialized in teaching JavaScript, React, and modern web technologies. Committed to helping students achieve their learning goals through engaging and practical courses.</textarea>
+                        <small class="char-count">0/500 characters</small>
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" onclick="closeModal('editBioModal')">Cancel</button>
+                    <button type="submit" class="btn-primary">
+                        <span class="material-icons">save</span>
+                        Save Changes
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Edit Social Links Modal -->
+    <div id="editSocialModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('editSocialModal')">&times;</span>
+            <h2>Edit Social Links</h2>
+            <form id="editSocialForm" onsubmit="saveSocialInfo(event)">
+                <div class="form-row">
+                    <div class="form-group full-width">
+                        <label for="editWebsite">Website</label>
+                        <input type="url" id="editWebsite" name="website" placeholder="https://yourwebsite.com"
+                            value="https://website.com">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group full-width">
+                        <label for="editLinkedin">LinkedIn</label>
+                        <input type="url" id="editLinkedin" name="linkedin"
+                            placeholder="https://linkedin.com/in/username" value="https://linkedin.com/in/instructor">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group full-width">
+                        <label for="editGithub">GitHub</label>
+                        <input type="url" id="editGithub" name="github" placeholder="https://github.com/username"
+                            value="https://github.com/instructor">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group full-width">
+                        <label for="editTwitter">Twitter/X</label>
+                        <input type="url" id="editTwitter" name="twitter" placeholder="https://twitter.com/username">
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" onclick="closeModal('editSocialModal')">Cancel</button>
+                    <button type="submit" class="btn-primary">
+                        <span class="material-icons">save</span>
+                        Save Changes
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Change Password Modal -->
+    <div id="changePasswordModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('changePasswordModal')">&times;</span>
+            <h2>Change Password</h2>
+            <form id="changePasswordForm" onsubmit="savePassword(event)">
+                <div class="form-row">
+                    <div class="form-group full-width">
+                        <label for="currentPassword">Current Password *</label>
+                        <input type="password" id="currentPassword" name="currentPassword" required
+                            placeholder="Enter current password">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group full-width">
+                        <label for="newPassword">New Password *</label>
+                        <input type="password" id="newPassword" name="newPassword" required
+                            placeholder="Enter new password" minlength="8">
+                        <small>Minimum 8 characters</small>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group full-width">
+                        <label for="confirmPassword">Confirm New Password *</label>
+                        <input type="password" id="confirmPassword" name="confirmPassword" required
+                            placeholder="Confirm new password">
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary"
+                        onclick="closeModal('changePasswordModal')">Cancel</button>
+                    <button type="submit" class="btn-primary">
+                        <span class="material-icons">lock</span>
+                        Update Password
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/instructor-dashboard.js"></script>
+</body>
+
+</html>

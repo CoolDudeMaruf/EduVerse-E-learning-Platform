@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Course - EduVerse Instructor</title>
+
+    <!-- Google Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/instructor-dashboard.css">
+    <link rel="stylesheet" href="css/course-manage.css">
+</head>
+
+<body>
+    <!-- Top Navigation -->
+    <nav class="course-nav">
+        <div class="nav-left">
+            <a href="index.html#courses" class="btn-back">
+                <span class="material-icons">arrow_back</span>
+                <span>Back to Dashboard</span>
+            </a>
+            <div class="course-info">
+                <h1 id="courseTitle">Advanced JavaScript Masterclass</h1>
+                <div class="course-meta">
+                    <span class="status published">Published</span>
+                    <span class="separator">•</span>
+                    <span>12 sections</span>
+                    <span class="separator">•</span>
+                    <span>48 lectures</span>
+                    <span class="separator">•</span>
+                    <span>8h 45m total</span>
+                </div>
+            </div>
+        </div>
+        <div class="nav-right">
+            <button class="btn-secondary" onclick="previewCourse()">
+                <span class="material-icons">visibility</span>
+                Preview
+            </button>
+            <button class="btn-primary" onclick="publishChanges()">
+                <span class="material-icons">publish</span>
+                Publish Changes
+            </button>
+            <button class="btn-danger" onclick="deleteCourseFromManage()" title="Delete Course">
+                <span class="material-icons">delete</span>
+                Delete
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Layout -->
+    <div class="manage-layout">
+        <!-- Sidebar - Sections List -->
+        <aside class="sections-sidebar" id="sectionsSidebar">
+            <div class="sidebar-header">
+                <h3>Course Content</h3>
+                <button class="btn-icon" onclick="addSection()" title="Add Section">
+                    <span class="material-icons">add</span>
+                </button>
+            </div>
+
+            <div class="sections-list" id="sectionsList">
+                <!-- Section 1 -->
+                <div class="section-item open" data-section-id="1">
+                    <div class="section-header">
+                        <button class="section-toggle">
+                            <span class="material-icons">expand_more</span>
+                        </button>
+                        <div class="section-info" onclick="selectSection(1)">
+                            <span class="section-number">1</span>
+                            <div class="section-details">
+                                <h4>Introduction to JavaScript</h4>
+                                <span class="section-meta">5 lectures • 45min</span>
+                            </div>
+                        </div>
+                        <div class="section-actions">
+                            <button class="btn-icon" onclick="editSection(1)" title="Edit">
+                                <span class="material-icons">edit</span>
+                            </button>
+                            <button class="btn-icon" onclick="deleteSection(1)" title="Delete">
+                                <span class="material-icons">delete</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="lectures-list">
+                        <div class="lecture-item active" data-lecture-id="1" onclick="selectLecture(1)">
+                            <span class="material-icons lecture-icon">play_circle</span>
+                            <div class="lecture-info">
+                                <p class="lecture-name">What is JavaScript?</p>
+                                <span class="lecture-duration">8:30</span>
+                            </div>
+                            <div class="lecture-actions">
+                                <button class="btn-icon" onclick="event.stopPropagation(); editLecture(1)">
+                                    <span class="material-icons">edit</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="lecture-item" data-lecture-id="2" onclick="selectLecture(2)">
+                            <span class="material-icons lecture-icon">play_circle</span>
+                            <div class="lecture-info">
+                                <p class="lecture-name">Setting Up Your Environment</p>
+                                <span class="lecture-duration">12:15</span>
+                            </div>
+                            <div class="lecture-actions">
+                                <button class="btn-icon" onclick="event.stopPropagation(); editLecture(2)">
+                                    <span class="material-icons">edit</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="lecture-item" data-lecture-id="3" onclick="selectLecture(3)">
+                            <span class="material-icons lecture-icon">play_circle</span>
+                            <div class="lecture-info">
+                                <p class="lecture-name">Variables and Data Types</p>
+                                <span class="lecture-duration">15:45</span>
+                            </div>
+                            <div class="lecture-actions">
+                                <button class="btn-icon" onclick="event.stopPropagation(); editLecture(3)">
+                                    <span class="material-icons">edit</span>
+                                </button>
+                            </div>
+                        </div>
+                        <button class="btn-add-lecture" onclick="addLecture(1)">
+                            <span class="material-icons">add</span>
+                            Add Lecture
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Section 2 -->
+                <div class="section-item" data-section-id="2">
+                    <div class="section-header">
+                        <button class="section-toggle">
+                            <span class="material-icons">chevron_right</span>
+                        </button>
+                        <div class="section-info" onclick="selectSection(2)">
+                            <span class="section-number">2</span>
+                            <div class="section-details">
+                                <h4>Functions and Scope</h4>
+                                <span class="section-meta">8 lectures • 1h 20min</span>
+                            </div>
+                        </div>
+                        <div class="section-actions">
+                            <button class="btn-icon" onclick="editSection(2)" title="Edit">
+                                <span class="material-icons">edit</span>
+                            </button>
+                            <button class="btn-icon" onclick="deleteSection(2)" title="Delete">
+                                <span class="material-icons">delete</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="lectures-list">
+                        <div class="lecture-item" data-lecture-id="4" onclick="selectLecture(4)">
+                            <span class="material-icons lecture-icon">play_circle</span>
+                            <div class="lecture-info">
+                                <p class="lecture-name">Function Basics</p>
+                                <span class="lecture-duration">10:20</span>
+                            </div>
+                            <div class="lecture-actions">
+                                <button class="btn-icon" onclick="event.stopPropagation(); editLecture(4)">
+                                    <span class="material-icons">edit</span>
+                                </button>
+                            </div>
+                        </div>
+                        <button class="btn-add-lecture" onclick="addLecture(2)">
+                            <span class="material-icons">add</span>
+                            Add Lecture
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Section 3 -->
+                <div class="section-item" data-section-id="3">
+                    <div class="section-header">
+                        <button class="section-toggle">
+                            <span class="material-icons">chevron_right</span>
+                        </button>
+                        <div class="section-info" onclick="selectSection(3)">
+                            <span class="section-number">3</span>
+                            <div class="section-details">
+                                <h4>DOM Manipulation</h4>
+                                <span class="section-meta">6 lectures • 55min</span>
+                            </div>
+                        </div>
+                        <div class="section-actions">
+                            <button class="btn-icon" onclick="editSection(3)" title="Edit">
+                                <span class="material-icons">edit</span>
+                            </button>
+                            <button class="btn-icon" onclick="deleteSection(3)" title="Delete">
+                                <span class="material-icons">delete</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="lectures-list">
+                        <button class="btn-add-lecture" onclick="addLecture(3)">
+                            <span class="material-icons">add</span>
+                            Add Lecture
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <button class="btn-add-section" onclick="addSection()">
+                <span class="material-icons">add</span>
+                Add New Section
+            </button>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="manage-main">
+            <!-- Lecture Editor -->
+            <div class="lecture-editor" id="lectureEditor">
+                <div class="editor-header">
+                    <div class="editor-title">
+                        <span class="material-icons">play_circle</span>
+                        <input type="text" id="lectureTitleInput" value="What is JavaScript?"
+                            placeholder="Lecture Title">
+                    </div>
+                    <div class="editor-actions">
+                        <button class="btn-secondary" onclick="deleteLecture()">
+                            <span class="material-icons">delete</span>
+                            Delete
+                        </button>
+                        <button class="btn-primary" onclick="saveLecture()">
+                            <span class="material-icons">save</span>
+                            Save Changes
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Tabs -->
+                <div class="editor-tabs">
+                    <button class="tab-btn active" data-tab="video">
+                        <span class="material-icons">videocam</span>
+                        Video
+                    </button>
+                    <button class="tab-btn" data-tab="content">
+                        <span class="material-icons">description</span>
+                        Content
+                    </button>
+                    <button class="tab-btn" data-tab="resources">
+                        <span class="material-icons">folder</span>
+                        Resources
+                    </button>
+                    <button class="tab-btn" data-tab="settings">
+                        <span class="material-icons">settings</span>
+                        Settings
+                    </button>
+                </div>
+
+                <!-- Video Tab -->
+                <div class="tab-content active" id="videoTab">
+                    <div class="video-upload-section">
+                        <div class="current-video">
+                            <div class="video-preview">
+                                <video id="videoPreview" controls>
+                                    <source src="" type="video/mp4">
+                                </video>
+                                <div class="video-placeholder" id="videoPlaceholder">
+                                    <span class="material-icons">cloud_upload</span>
+                                    <p>No video uploaded yet</p>
+                                </div>
+                            </div>
+                            <div class="video-info">
+                                <p><strong>Current video:</strong> <span
+                                        id="currentVideoName">intro-javascript.mp4</span></p>
+                                <p><strong>Duration:</strong> <span id="currentVideoDuration">8:30</span></p>
+                                <p><strong>Size:</strong> <span id="currentVideoSize">45.2 MB</span></p>
+                            </div>
+                        </div>
+
+                        <div class="upload-options">
+                            <div class="upload-card" onclick="document.getElementById('videoUpload').click()">
+                                <span class="material-icons">upload_file</span>
+                                <h4>Upload Video</h4>
+                                <p>MP4, WebM, or MOV (max 2GB)</p>
+                                <input type="file" id="videoUpload" accept="video/*" hidden
+                                    onchange="handleVideoUpload(event)">
+                            </div>
+                            <div class="upload-card" onclick="showEmbedModal()">
+                                <span class="material-icons">link</span>
+                                <h4>Embed Video</h4>
+                                <p>YouTube, Vimeo, or other URL</p>
+                            </div>
+                        </div>
+
+                        <div class="upload-progress" id="uploadProgress" style="display: none;">
+                            <div class="progress-info">
+                                <span id="uploadFileName">video.mp4</span>
+                                <span id="uploadPercent">0%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="uploadProgressFill"></div>
+                            </div>
+                            <button class="btn-text" onclick="cancelUpload()">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Content Tab -->
+                <div class="tab-content" id="contentTab">
+                    <div class="content-editor">
+                        <div class="form-group">
+                            <label>Lecture Description</label>
+                            <textarea id="lectureDescription" rows="4"
+                                placeholder="Describe what students will learn in this lecture...">In this lecture, we'll explore what JavaScript is and why it's one of the most important programming languages for web development.</textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Learning Objectives</label>
+                            <div class="objectives-list" id="objectivesList">
+                                <div class="objective-item">
+                                    <span class="material-icons">check_circle</span>
+                                    <input type="text" value="Understand what JavaScript is"
+                                        placeholder="Learning objective">
+                                    <button class="btn-icon" onclick="removeObjective(this)">
+                                        <span class="material-icons">close</span>
+                                    </button>
+                                </div>
+                                <div class="objective-item">
+                                    <span class="material-icons">check_circle</span>
+                                    <input type="text" value="Learn the history of JavaScript"
+                                        placeholder="Learning objective">
+                                    <button class="btn-icon" onclick="removeObjective(this)">
+                                        <span class="material-icons">close</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <button class="btn-text" onclick="addObjective()">
+                                <span class="material-icons">add</span>
+                                Add Objective
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Resources Tab -->
+                <div class="tab-content" id="resourcesTab">
+                    <div class="resources-manager">
+                        <div class="resources-header">
+                            <h3>Lecture Resources</h3>
+                            <button class="btn-primary" onclick="showAddResourceModal()">
+                                <span class="material-icons">add</span>
+                                Add Resource
+                            </button>
+                        </div>
+
+                        <div class="resources-list" id="resourcesList">
+                            <div class="resource-item" data-resource-id="1">
+                                <div class="resource-icon pdf">
+                                    <span class="material-icons">picture_as_pdf</span>
+                                </div>
+                                <div class="resource-info">
+                                    <h4>Lecture Slides</h4>
+                                    <p>PDF • 2.5 MB</p>
+                                </div>
+                                <div class="resource-actions">
+                                    <button class="btn-icon" onclick="editResource(1)">
+                                        <span class="material-icons">edit</span>
+                                    </button>
+                                    <button class="btn-icon" onclick="deleteResource(1)">
+                                        <span class="material-icons">delete</span>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="resource-item" data-resource-id="2">
+                                <div class="resource-icon code">
+                                    <span class="material-icons">code</span>
+                                </div>
+                                <div class="resource-info">
+                                    <h4>Source Code</h4>
+                                    <p>ZIP • 15 KB</p>
+                                </div>
+                                <div class="resource-actions">
+                                    <button class="btn-icon" onclick="editResource(2)">
+                                        <span class="material-icons">edit</span>
+                                    </button>
+                                    <button class="btn-icon" onclick="deleteResource(2)">
+                                        <span class="material-icons">delete</span>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="resource-item" data-resource-id="3">
+                                <div class="resource-icon link">
+                                    <span class="material-icons">link</span>
+                                </div>
+                                <div class="resource-info">
+                                    <h4>MDN JavaScript Guide</h4>
+                                    <p>External Link</p>
+                                </div>
+                                <div class="resource-actions">
+                                    <button class="btn-icon" onclick="editResource(3)">
+                                        <span class="material-icons">edit</span>
+                                    </button>
+                                    <button class="btn-icon" onclick="deleteResource(3)">
+                                        <span class="material-icons">delete</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="empty-resources" id="emptyResources" style="display: none;">
+                            <span class="material-icons">folder_open</span>
+                            <p>No resources added yet</p>
+                            <button class="btn-primary" onclick="showAddResourceModal()">Add First Resource</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Settings Tab -->
+                <div class="tab-content" id="settingsTab">
+                    <div class="settings-panel">
+                        <div class="setting-group">
+                            <h3>Lecture Settings</h3>
+
+                            <div class="form-group">
+                                <label>Lecture Type</label>
+                                <select id="lectureType">
+                                    <option value="video" selected>Video Lecture</option>
+                                    <option value="article">Text Article</option>
+                                    <option value="quiz">Quiz</option>
+                                    <option value="assignment">Assignment</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="toggle-label">
+                                    <span>Free Preview</span>
+                                    <label class="switch">
+                                        <input type="checkbox" id="freePreview">
+                                        <span class="slider"></span>
+                                    </label>
+                                </label>
+                                <small>Allow non-enrolled users to preview this lecture</small>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="toggle-label">
+                                    <span>Downloadable Video</span>
+                                    <label class="switch">
+                                        <input type="checkbox" id="downloadable" checked>
+                                        <span class="slider"></span>
+                                    </label>
+                                </label>
+                                <small>Allow students to download this video for offline viewing</small>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Duration Override (minutes)</label>
+                                <input type="number" id="durationOverride" placeholder="Auto-detected" min="1">
+                                <small>Leave empty to use video duration</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Empty State -->
+            <div class="empty-state" id="emptyState" style="display: none;">
+                <span class="material-icons">movie_creation</span>
+                <h3>Select a lecture to edit</h3>
+                <p>Choose a lecture from the sidebar or add a new one</p>
+            </div>
+        </main>
+    </div>
+
+    <!-- Add Section Modal -->
+    <div id="addSectionModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('addSectionModal')">&times;</span>
+            <h2>Add New Section</h2>
+            <form id="addSectionForm" onsubmit="saveNewSection(event)">
+                <div class="form-group">
+                    <label for="newSectionTitle">Section Title *</label>
+                    <input type="text" id="newSectionTitle" required placeholder="e.g., Introduction to Variables">
+                </div>
+                <div class="form-group">
+                    <label for="newSectionDescription">Description (optional)</label>
+                    <textarea id="newSectionDescription" rows="3"
+                        placeholder="Brief description of this section..."></textarea>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" onclick="closeModal('addSectionModal')">Cancel</button>
+                    <button type="submit" class="btn-primary">
+                        <span class="material-icons">add</span>
+                        Add Section
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add Lecture Modal -->
+    <div id="addLectureModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('addLectureModal')">&times;</span>
+            <h2>Add New Lecture</h2>
+            <form id="addLectureForm" onsubmit="saveNewLecture(event)">
+                <input type="hidden" id="newLectureSectionId">
+                <div class="form-group">
+                    <label for="newLectureTitle">Lecture Title *</label>
+                    <input type="text" id="newLectureTitle" required placeholder="e.g., Understanding Variables">
+                </div>
+                <div class="form-group">
+                    <label for="newLectureType">Lecture Type *</label>
+                    <select id="newLectureType" required>
+                        <option value="video">Video Lecture</option>
+                        <option value="article">Text Article</option>
+                        <option value="quiz">Quiz</option>
+                        <option value="assignment">Assignment</option>
+                    </select>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" onclick="closeModal('addLectureModal')">Cancel</button>
+                    <button type="submit" class="btn-primary">
+                        <span class="material-icons">add</span>
+                        Add Lecture
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add Resource Modal -->
+    <div id="addResourceModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('addResourceModal')">&times;</span>
+            <h2>Add Resource</h2>
+            <form id="addResourceForm" onsubmit="saveNewResource(event)">
+                <div class="form-group">
+                    <label for="resourceType">Resource Type *</label>
+                    <select id="resourceType" required onchange="toggleResourceFields()">
+                        <option value="file">Upload File</option>
+                        <option value="link">External Link</option>
+                    </select>
+                </div>
+
+                <div id="fileUploadFields">
+                    <div class="form-group">
+                        <label for="resourceFile">Select File *</label>
+                        <input type="file" id="resourceFile" accept=".pdf,.zip,.doc,.docx,.txt,.ppt,.pptx">
+                    </div>
+                </div>
+
+                <div id="linkFields" style="display: none;">
+                    <div class="form-group">
+                        <label for="resourceUrl">URL *</label>
+                        <input type="url" id="resourceUrl" placeholder="https://example.com/resource">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="resourceName">Display Name *</label>
+                    <input type="text" id="resourceName" required placeholder="e.g., Lecture Slides">
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" onclick="closeModal('addResourceModal')">Cancel</button>
+                    <button type="submit" class="btn-primary">
+                        <span class="material-icons">add</span>
+                        Add Resource
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Embed Video Modal -->
+    <div id="embedVideoModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('embedVideoModal')">&times;</span>
+            <h2>Embed Video</h2>
+            <form id="embedVideoForm" onsubmit="saveEmbedVideo(event)">
+                <div class="form-group">
+                    <label for="embedUrl">Video URL *</label>
+                    <input type="url" id="embedUrl" required placeholder="https://youtube.com/watch?v=...">
+                    <small>Supports YouTube, Vimeo, and other video platforms</small>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" onclick="closeModal('embedVideoModal')">Cancel</button>
+                    <button type="submit" class="btn-primary">
+                        <span class="material-icons">link</span>
+                        Embed Video
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/course-manage.js"></script>
+</body>
+
+</html>
