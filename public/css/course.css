@@ -1,0 +1,2564 @@
+/* ===================================
+   Course Detail Page Styles
+   =================================== */
+
+/* Course Hero Section */
+.course-hero {
+    background: var(--gradient-dark);
+    padding: 6rem 0 4rem;
+}
+
+.course-hero-content {
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    gap: 3rem;
+}
+
+.course-hero-info {
+    color: var(--white);
+}
+
+/* Breadcrumb */
+.breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    font-size: 0.875rem;
+}
+
+.breadcrumb a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+}
+
+.breadcrumb a:hover {
+    color: var(--white);
+}
+
+.breadcrumb .material-icons {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* Course Category */
+.course-category {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-full);
+    font-weight: 600;
+    font-size: 0.875rem;
+    margin-bottom: 1.5rem;
+    backdrop-filter: blur(10px);
+}
+
+/* Course Title */
+.course-hero-title {
+    font-size: 2.5rem;
+    color: var(--white);
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+.course-hero-description {
+    font-size: 1.125rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+/* Course Stats */
+.course-stats {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.stat-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: #fbbf24;
+    color: var(--dark);
+    border-radius: var(--radius-md);
+    font-weight: 700;
+    font-size: 0.875rem;
+}
+
+.stat-badge .material-icons {
+    font-size: 1.125rem;
+}
+
+.stat-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+}
+
+.stat-item .material-icons {
+    font-size: 1.125rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.stat-item strong {
+    color: var(--white);
+    font-weight: 700;
+}
+
+.stat-item span {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Instructor Mini */
+.course-instructor-mini {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.instructor-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    color: var(--white);
+    font-weight: 600;
+}
+
+.instructor-link:hover {
+    text-decoration: underline;
+}
+
+.instructor-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--gradient-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    font-weight: 700;
+    font-size: 0.75rem;
+}
+
+.course-updated {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Course Preview Card */
+.course-preview-card {
+    background: var(--white);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    box-shadow: var(--shadow-2xl);
+    position: sticky;
+    top: 100px;
+    max-height: calc(100vh - 120px);
+    overflow-y: auto;
+}
+
+.preview-thumbnail {
+    position: relative;
+    width: 100%;
+    height: 225px;
+    overflow: hidden;
+}
+
+.preview-gradient {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: var(--gray-lighter);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.preview-gradient::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.4));
+    pointer-events: none;
+}
+
+.btn-play {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: var(--white);
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all var(--transition-base);
+    box-shadow: var(--shadow-xl);
+}
+
+.btn-play:hover {
+    transform: scale(1.1);
+}
+
+.btn-play .material-icons {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+}
+
+.preview-content {
+    padding: 2rem;
+}
+
+.preview-price {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.current-price {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--dark);
+}
+
+.original-price {
+    font-size: 0.9rem;
+    color: var(--gray);
+    text-decoration: line-through;
+}
+
+.discount-badge {
+    padding: 0.25rem 0.75rem;
+    background: var(--success);
+    color: var(--white);
+    border-radius: var(--radius-md);
+    font-weight: 700;
+    font-size: 0.875rem;
+}
+
+.price-notice {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--error);
+    font-weight: 600;
+    font-size: 0.875rem;
+    margin-bottom: 1.5rem;
+}
+
+.price-notice .material-icons {
+    font-size: 1.125rem;
+}
+
+.preview-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.preview-features {
+    border-top: 1px solid var(--gray-lighter);
+    padding-top: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.preview-features h4 {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+}
+
+.preview-features ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.preview-features li {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.875rem;
+    color: var(--dark);
+}
+
+.preview-features .material-icons {
+    font-size: 1.125rem;
+    color: var(--primary-color);
+}
+
+.preview-share {
+    display: flex;
+    gap: 1rem;
+    border-top: 1px solid var(--gray-lighter);
+    padding-top: 1.5rem;
+}
+
+.btn-text {
+    background: none;
+    border: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--primary-color);
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 0.875rem;
+}
+
+.btn-text:hover {
+    text-decoration: underline;
+}
+
+.btn-icon {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--dark);
+    padding: 0.5rem;
+    border-radius: var(--radius-md);
+    transition: all var(--transition-base);
+}
+
+.btn-icon:hover {
+    background: var(--gray-lighter);
+}
+
+/* Course Content */
+.course-content {
+    padding: 4rem 0;
+}
+
+.course-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+/* Tabs Navigation */
+.tabs-nav {
+    display: flex;
+    gap: 0.5rem;
+    border-bottom: 2px solid var(--gray-lighter);
+    margin-bottom: 2rem;
+    overflow-x: auto;
+}
+
+.tab-btn {
+    padding: 1rem 1.5rem;
+    background: none;
+    border: none;
+    font-weight: 600;
+    color: var(--gray);
+    cursor: pointer;
+    position: relative;
+    transition: color var(--transition-base);
+    white-space: nowrap;
+}
+
+.tab-btn:hover {
+    color: var(--dark);
+}
+
+.tab-btn.active {
+    color: var(--primary-color);
+}
+
+.tab-btn.active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--primary-color);
+}
+
+/* Tab Content */
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* Content Section */
+.content-section {
+    margin-bottom: 1rem;
+
+}
+
+.content-section h2 {
+    font-size: 1.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.content-section h3 {
+    font-size: 1.25rem;
+    margin: 1.5rem 0 1rem;
+}
+
+/* Learning Objectives */
+.learning-objectives {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.objective-item {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+}
+
+.objective-item .material-icons {
+    color: var(--success);
+    flex-shrink: 0;
+    margin-top: 0.125rem;
+}
+
+/* Description */
+.course-description {
+    line-height: 1.8;
+    color: var(--dark);
+    position: relative;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+}
+
+.course-description.collapsed {
+    max-height: 150px;
+}
+
+.course-description.expanded {
+    max-height: none;
+}
+
+.course-description p {
+    margin-bottom: 1rem;
+}
+
+.course-description ul {
+    margin: 1rem 0 1rem 2rem;
+}
+
+.course-description li {
+    margin-bottom: 0.5rem;
+}
+
+.course-description.collapsed::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background: linear-gradient(to bottom, transparent, var(--white));
+    pointer-events: none;
+}
+
+.btn-expand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: none;
+    border: none;
+    color: var(--primary-color);
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 1rem;
+}
+
+.btn-expand:hover {
+    text-decoration: underline;
+}
+
+/* Requirements & Audience Lists */
+.requirements-list,
+.audience-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.content-section h2 {
+    margin-bottom: 2px;
+}
+.content-section p,
+.content-section ul {
+    padding-left: 2.5rem;
+    position: relative;
+}
+
+
+
+/* Curriculum */
+.curriculum-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.curriculum-stats {
+    display: flex;
+    gap: 0.5rem;
+    color: var(--gray);
+    font-size: 0.875rem;
+}
+
+.curriculum-stats strong {
+    color: var(--dark);
+}
+
+.curriculum-actions {
+    margin-bottom: 1.5rem;
+}
+
+.curriculum-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.curriculum-section {
+    background: var(--white);
+    border: 1px solid var(--gray-light);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.5rem;
+    background: var(--gray-lighter);
+    cursor: pointer;
+    transition: background var(--transition-base);
+}
+
+.section-header:hover {
+    background: #e2e8f0;
+}
+
+.section-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    transition: transform var(--transition-base);
+}
+
+.curriculum-section.open .section-toggle .material-icons {
+    transform: rotate(90deg);
+}
+
+.section-header h3 {
+    flex: 1;
+    font-size: 1rem;
+    margin: 0;
+}
+
+.section-meta {
+    display: flex;
+    gap: 0.5rem;
+    color: var(--gray);
+    font-size: 0.875rem;
+}
+
+.section-content {
+    display: none;
+    padding: 1rem;
+}
+
+.curriculum-section.open .section-content {
+    display: block;
+}
+
+.lecture-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius-md);
+    transition: background var(--transition-base);
+}
+
+.lecture-item:hover {
+    background: var(--gray-lighter);
+}
+
+.lecture-info {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex: 1;
+}
+
+.lecture-info .material-icons {
+    color: var(--gray);
+    font-size: 1.25rem;
+}
+
+.lecture-title {
+    font-size: 0.875rem;
+    color: var(--dark);
+}
+
+.lecture-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--gray);
+    font-size: 0.875rem;
+}
+
+.btn-preview {
+    background: none;
+    border: none;
+    color: var(--primary-color);
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 0.875rem;
+}
+
+.btn-preview:hover {
+    text-decoration: underline;
+}
+
+.show-more-sections {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+/* Instructor Profile */
+.instructor-profile {
+    background: var(--gray-lighter);
+    border-radius: var(--radius-xl);
+    padding: 2rem;
+}
+
+.instructor-header {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.instructor-avatar-large {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: var(--gradient-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    font-weight: 700;
+    font-size: 2.5rem;
+    flex-shrink: 0;
+    box-shadow: var(--shadow-lg);
+}
+
+.instructor-info {
+    flex: 1;
+}
+
+.instructor-info h3 {
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
+}
+
+.instructor-title {
+    color: var(--gray);
+    margin-bottom: 1.5rem;
+}
+
+.instructor-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.instructor-stats-grid .stat {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.instructor-stats-grid .material-icons {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+}
+
+.instructor-stats-grid strong {
+    display: block;
+    font-size: 1.125rem;
+}
+
+.instructor-stats-grid span {
+    font-size: 0.875rem;
+    color: var(--gray);
+}
+
+.instructor-bio {
+    line-height: 1.8;
+}
+
+.instructor-bio p {
+    margin-bottom: 1rem;
+}
+
+/* Reviews */
+.rating-overview {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 3rem;
+    margin-bottom: 2rem;
+    padding: 2rem;
+    background: var(--gray-lighter);
+    border-radius: var(--radius-xl);
+}
+
+.rating-summary {
+    text-align: center;
+}
+
+.rating-score h3 {
+    font-size: 4rem;
+    color: var(--primary-color);
+    margin: 0;
+}
+
+.rating-score .stars {
+    display: flex;
+    justify-content: center;
+    gap: 0.25rem;
+    margin: 0.5rem 0;
+}
+
+.rating-score .stars .material-icons {
+    color: #fbbf24;
+    font-size: 1.5rem;
+}
+
+.rating-score p {
+    color: var(--gray);
+    margin: 0;
+}
+
+.rating-breakdown {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.rating-bar-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.bar-label {
+    display: flex;
+    gap: 0.125rem;
+    min-width: 100px;
+}
+
+.bar-label .material-icons {
+    font-size: 1rem;
+    color: #fbbf24;
+}
+
+.bar-progress {
+    flex: 1;
+    height: 8px;
+    background: var(--gray-light);
+    border-radius: var(--radius-full);
+    overflow: hidden;
+}
+
+.bar-fill {
+    height: 100%;
+    background: #fbbf24;
+    transition: width 0.5s ease;
+}
+
+.bar-percentage {
+    min-width: 40px;
+    text-align: right;
+    color: var(--gray);
+    font-size: 0.875rem;
+}
+
+/* Reviews Filter */
+.reviews-filter {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.search-reviews {
+    flex: 1;
+    padding: 0.75rem 1rem;
+    border: 2px solid var(--gray-light);
+    border-radius: var(--radius-lg);
+    font-size: 1rem;
+    outline: none;
+}
+
+.search-reviews:focus {
+    border-color: var(--primary-color);
+}
+
+.filter-select {
+    padding: 0.75rem 1rem;
+    border: 2px solid var(--gray-light);
+    border-radius: var(--radius-lg);
+    font-size: 1rem;
+    outline: none;
+    cursor: pointer;
+}
+
+/* Reviews List */
+.reviews-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.review-item {
+    padding: 1.5rem;
+    background: var(--white);
+    border: 1px solid var(--gray-light);
+    border-radius: var(--radius-lg);
+}
+
+.review-header {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.reviewer-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--gradient-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.reviewer-info h4 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1rem;
+}
+
+.review-meta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.review-meta .stars {
+    display: flex;
+    gap: 0.125rem;
+}
+
+.review-meta .stars .material-icons {
+    font-size: 1rem;
+    color: #fbbf24;
+}
+
+.review-date {
+    color: var(--gray);
+    font-size: 0.875rem;
+}
+
+.review-content p {
+    line-height: 1.6;
+    margin: 0;
+}
+
+.review-actions {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--gray-lighter);
+    flex-wrap: wrap;
+}
+
+.btn-reaction {
+    background: none;
+    border: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--gray);
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-reaction:hover {
+    color: var(--dark);
+}
+
+.btn-reaction.active {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.btn-delete {
+    color: #ef4444 !important;
+}
+
+.btn-delete:hover {
+    color: #dc2626 !important;
+}
+
+.btn-delete .material-icons {
+    font-size: 1.1rem;
+}
+
+/* Your Review Badge */
+.your-review-badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background: rgba(74, 144, 226, 0.1);
+    color: var(--primary-color);
+    border-radius: 0.375rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-left: 0.5rem;
+}
+
+/* Related Courses */
+.related-courses-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+/* Modal */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.modal.active {
+    display: flex;
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.modal-content {
+    position: relative;
+    background: var(--white);
+    border-radius: var(--radius-xl);
+    max-width: 900px;
+    width: 100%;
+    max-height: 90vh;
+    overflow: hidden;
+    box-shadow: var(--shadow-2xl);
+}
+
+.video-modal {
+    max-width: 1000px;
+}
+
+.modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.5);
+    border: none;
+    color: var(--white);
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background var(--transition-base);
+}
+
+.modal-close:hover {
+    background: rgba(0, 0, 0, 0.7);
+}
+
+.video-container {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%;
+    background: var(--dark);
+}
+
+.video-container video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.modal-footer {
+    padding: 2rem;
+}
+
+.modal-footer h3 {
+    margin: 0 0 0.5rem 0;
+}
+
+.modal-footer p {
+    color: var(--gray);
+    margin: 0;
+}
+
+/* Professional Video Modal Styles */
+.video-modal-pro {
+    max-width: 1100px;
+    background: linear-gradient(145deg, #1a1a2e 0%, #16213e 100%);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 25px 80px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.1);
+    transform: scale(0.9) translateY(20px);
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.modal.active .video-modal-pro {
+    transform: scale(1) translateY(0);
+}
+
+/* Compact Video Modal */
+.video-modal-compact {
+    max-width: 720px;
+    width: 90%;
+    background: #0f0f0f;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+    transform: scale(0.95) translateY(10px);
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+}
+
+.modal.active .video-modal-compact {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+}
+
+/* Close Button */
+.video-modal-close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(10px);
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 20;
+    transition: all 0.2s ease;
+}
+
+.video-modal-close:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1);
+}
+
+.video-modal-close .material-icons {
+    font-size: 20px;
+}
+
+/* Video Player */
+.video-player-compact {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%;
+    background: #000;
+}
+
+.video-player-compact video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.video-player-compact .video-loading-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+.video-player-compact .video-loading-overlay.active {
+    display: flex;
+}
+
+.video-spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(255, 255, 255, 0.15);
+    border-top-color: #6366f1;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Bottom Info Bar */
+.video-info-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    background: linear-gradient(180deg, rgba(15, 15, 15, 0.95) 0%, #0f0f0f 100%);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.video-info-bar-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+    min-width: 0;
+}
+
+.video-preview-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 10px;
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 600;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    flex-shrink: 0;
+}
+
+.video-info-bar h4 {
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.video-enroll-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    background: #fff;
+    border: none;
+    border-radius: 6px;
+    color: #0f0f0f;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+
+.video-enroll-btn:hover {
+    background: #f3f4f6;
+    transform: translateY(-1px);
+}
+
+/* Compact Modal Responsive */
+@media (max-width: 640px) {
+    .video-modal-compact {
+        width: 95%;
+        max-width: none;
+        border-radius: 12px;
+    }
+    
+    .video-modal-close {
+        top: 8px;
+        right: 8px;
+        width: 32px;
+        height: 32px;
+    }
+    
+    .video-modal-close .material-icons {
+        font-size: 18px;
+    }
+    
+    .video-info-bar {
+        padding: 10px 12px;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    
+    .video-info-bar-left {
+        width: 100%;
+    }
+    
+    .video-info-bar h4 {
+        font-size: 13px;
+    }
+    
+    .video-enroll-btn {
+        width: 100%;
+        justify-content: center;
+        padding: 10px 16px;
+    }
+}
+
+/* Sticky Bottom Bar (Mobile) */
+.sticky-bottom-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--white);
+    box-shadow: 0 -4px 6px -1px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    z-index: 1000;
+    display: none;
+}
+
+.bottom-bar-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+.price-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.price-info .current-price {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--dark);
+}
+
+.price-info .original-price {
+    font-size: 0.875rem;
+    color: var(--gray);
+    text-decoration: line-through;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .course-hero-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .course-preview-card {
+        position: static;
+        max-height: none;
+    }
+    
+    .sticky-bottom-bar {
+        display: block;
+    }
+    
+    .learning-objectives {
+        grid-template-columns: 1fr;
+    }
+    
+    .instructor-header {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .instructor-stats-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .rating-overview {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .related-courses-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .course-hero {
+        padding: 5rem 0 3rem;
+    }
+    
+    .course-hero-title {
+        font-size: 2rem;
+    }
+    
+    .course-stats {
+        gap: 1rem;
+    }
+    
+    .tabs-nav {
+        gap: 0.25rem;
+    }
+    
+    .tab-btn {
+        padding: 0.75rem 1rem;
+        font-size: 0.875rem;
+    }
+    
+    .related-courses-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .modal {
+        padding: 1rem;
+    }
+}
+
+/* ===================================
+   Related Courses Section
+   =================================== */
+
+
+.related-courses-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.course-card {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: inherit;
+    background: var(--white);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.course-card:hover {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    transform: translateY(-4px);
+    border-color: var(--primary-color);
+}
+
+.course-card .course-thumbnail {
+    width: 100%;
+    height: 150px;
+    overflow: hidden;
+    background: var(--light-gray);
+    position: relative;
+}
+
+.course-card .course-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.course-card:hover .course-thumbnail img {
+    transform: scale(1.05);
+}
+
+.course-card .course-info {
+    padding: 1.25rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.course-card h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin: 0 0 0.75rem 0;
+    line-height: 1.4;
+    color: var(--dark-text);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.course-card .course-rating {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+    font-size: 0.875rem;
+}
+
+.course-card .course-rating .material-icons {
+    font-size: 1.125rem;
+    color: var(--warning-color);
+}
+
+.course-card .course-rating span:nth-child(2) {
+    font-weight: 600;
+    color: var(--dark-text);
+}
+
+.course-card .rating-count {
+    color: var(--secondary-text);
+    font-size: 0.8125rem;
+}
+
+.course-card .course-price {
+    margin-top: auto;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.course-card .course-price span {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.placeholder-text {
+    color: var(--secondary-text);
+    font-style: italic;
+}
+
+@media (max-width: 768px) {
+    .related-courses-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 1.5rem;
+    }
+    
+    .course-card h3 {
+        font-size: 1rem;
+    }
+    
+    .course-card .course-info {
+        padding: 1rem;
+    }
+}
+
+@media (max-width: 640px) {
+    .related-courses-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+    
+    .course-card .course-thumbnail {
+        height: 120px;
+    }
+    
+    .course-card h3 {
+        font-size: 0.9375rem;
+        -webkit-line-clamp: 1;
+    }
+    
+    .course-card .course-info {
+        padding: 0.75rem;
+    }
+    
+    .course-card .course-price span {
+        font-size: 1.125rem;
+    }
+}
+
+/* ===================================
+   Review Form Modal Styles
+   =================================== */
+
+/* Modal Header */
+.modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem;
+    border-bottom: 1px solid #e5e7eb;
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+}
+
+.modal-header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: var(--dark);
+    font-weight: 700;
+}
+
+.modal-header .modal-close {
+    position: static;
+    width: 36px;
+    height: 36px;
+    background: #f3f4f6;
+    border: none;
+    border-radius: 50%;
+    color: var(--dark);
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-header .modal-close:hover {
+    background: #e5e7eb;
+    transform: rotate(90deg);
+}
+
+/* Review Form Container */
+.review-form {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+    max-height: calc(90vh - 120px);
+    overflow-y: auto;
+}
+
+.review-form::-webkit-scrollbar {
+    width: 6px;
+}
+
+.review-form::-webkit-scrollbar-track {
+    background: #f1f5f9;
+}
+
+.review-form::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 3px;
+}
+
+.review-form::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+/* Form Group */
+.review-form .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.review-form label {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--dark);
+    letter-spacing: 0.3px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.review-form label::after {
+    content: attr(data-required);
+    color: #ef4444;
+    font-size: 1rem;
+}
+
+/* Text Input */
+.review-form input[type="text"] {
+    padding: 0.875rem 1rem;
+    border: 2px solid #e5e7eb;
+    border-radius: 0.625rem;
+    font-size: 0.95rem;
+    font-family: inherit;
+    color: var(--dark);
+    background: white;
+    transition: all 0.3s ease;
+}
+
+.review-form input[type="text"]:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 4px rgba(74, 144, 226, 0.1);
+    background: #f8faff;
+}
+
+.review-form input[type="text"]::placeholder {
+    color: #9ca3af;
+}
+
+/* Textarea */
+.review-form textarea {
+    padding: 0.875rem 1rem;
+    border: 2px solid #e5e7eb;
+    border-radius: 0.625rem;
+    font-size: 0.95rem;
+    font-family: inherit;
+    color: var(--dark);
+    background: white;
+    resize: vertical;
+    min-height: 140px;
+    transition: all 0.3s ease;
+    line-height: 1.5;
+}
+
+.review-form textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 4px rgba(74, 144, 226, 0.1);
+    background: #f8faff;
+}
+
+.review-form textarea::placeholder {
+    color: #9ca3af;
+}
+
+.review-form small {
+    font-size: 0.8rem;
+    color: #6b7280;
+    margin-top: 0.25rem;
+}
+
+/* ===================================
+   Star Rating Styles
+   =================================== */
+
+.star-rating-group {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.star-rating {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+}
+
+.star-btn {
+    background: none;
+    border: none;
+    padding: 0.5rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border-radius: 0.5rem;
+}
+
+.star-btn:hover {
+    background: rgba(74, 144, 226, 0.1);
+}
+
+.star-btn .material-icons {
+    font-size: 2.5rem;
+    color: #d1d5db;
+    transition: all 0.2s ease;
+}
+
+.star-btn:hover .material-icons {
+    color: #fbbf24;
+    transform: scale(1.15) rotate(-10deg);
+}
+
+.star-btn.active .material-icons {
+    color: #fbbf24;
+    transform: scale(1.1);
+    text-shadow: 0 0 10px rgba(251, 191, 36, 0.4);
+}
+
+/* Rating Feedback Text */
+#ratingText {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: #f3f4f6;
+    border-radius: 0.5rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    min-width: 120px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+#ratingText:empty {
+    display: none;
+}
+
+/* ===================================
+   Form Actions
+   =================================== */
+
+.review-form .form-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 1rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #e5e7eb;
+}
+
+.review-form button[type="submit"],
+.review-form button[type="button"] {
+    padding: 0.875rem 1.5rem;
+    border: none;
+    border-radius: 0.625rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.review-form button[type="submit"] {
+    background: var(--primary-color);
+    color: white;
+    box-shadow: 0 4px 6px -1px rgba(74, 144, 226, 0.3);
+}
+
+.review-form button[type="submit"]:hover:not(:disabled) {
+    background: #3b82f6;
+    box-shadow: 0 10px 15px -3px rgba(74, 144, 226, 0.4);
+    transform: translateY(-2px);
+}
+
+.review-form button[type="submit"]:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+.review-form button[type="submit"]:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.review-form button[type="button"] {
+    background: #f3f4f6;
+    color: var(--dark);
+    border: 1px solid #e5e7eb;
+}
+
+.review-form button[type="button"]:hover {
+    background: #e5e7eb;
+    border-color: #d1d5db;
+}
+
+/* ===================================
+   Add Review Button
+   =================================== */
+
+#addReviewBtn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.875rem 2rem;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 0.625rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px -1px rgba(74, 144, 226, 0.3);
+}
+
+#addReviewBtn:hover {
+    background: #3b82f6;
+    box-shadow: 0 10px 15px -3px rgba(74, 144, 226, 0.4);
+    transform: translateY(-2px);
+}
+
+#addReviewBtn:active {
+    transform: translateY(0);
+}
+
+#addReviewBtn .material-icons {
+    font-size: 1.25rem;
+}
+
+/* ===================================
+   Responsive Design
+   =================================== */
+
+@media (max-width: 768px) {
+    .modal-content {
+        max-width: 95%;
+        max-height: 95vh;
+        border-radius: var(--radius-lg);
+    }
+
+    .modal-header {
+        padding: 1.5rem;
+    }
+
+    .review-form {
+        padding: 1.5rem;
+        gap: 1.5rem;
+    }
+
+    .star-btn .material-icons {
+        font-size: 2rem;
+    }
+
+    .star-btn:hover .material-icons {
+        transform: scale(1.1) rotate(-10deg);
+    }
+
+    .star-btn.active .material-icons {
+        transform: scale(1.05);
+    }
+
+    .review-form .form-actions {
+        grid-template-columns: 1fr 1fr;
+        gap: 0.75rem;
+    }
+}
+
+@media (max-width: 640px) {
+    .modal {
+        padding: 1rem;
+    }
+
+    .modal-header {
+        padding: 1.25rem;
+    }
+
+    .modal-header h2 {
+        font-size: 1.25rem;
+    }
+
+    .review-form {
+        padding: 1.25rem;
+        gap: 1.25rem;
+    }
+
+    .star-rating {
+        gap: 0.5rem;
+    }
+
+    .star-btn {
+        padding: 0.375rem;
+    }
+
+    .star-btn .material-icons {
+        font-size: 1.75rem;
+    }
+
+    .review-form textarea {
+        min-height: 120px;
+        font-size: 1rem;
+    }
+
+    .review-form input[type="text"],
+    .review-form textarea {
+        padding: 0.75rem 0.875rem;
+    }
+
+    .review-form label {
+        font-size: 0.9rem;
+    }
+
+    .review-form .form-actions {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+    }
+
+    #addReviewBtn {
+        width: 100%;
+        padding: 0.875rem 1.5rem;
+        font-size: 0.95rem;
+    }
+
+    #ratingText {
+        font-size: 0.85rem;
+        padding: 0.375rem 0.75rem;
+        min-width: auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .modal {
+        padding: 0.5rem;
+    }
+
+    .modal-content {
+        max-width: 100%;
+        max-height: 100vh;
+        border-radius: var(--radius-md);
+    }
+
+    .modal-header {
+        padding: 1rem;
+    }
+
+    .modal-header h2 {
+        font-size: 1.1rem;
+    }
+
+    .review-form {
+        padding: 1rem;
+        gap: 1rem;
+    }
+
+    .star-btn .material-icons {
+        font-size: 1.5rem;
+    }
+
+    .review-form textarea {
+        min-height: 100px;
+    }
+
+    #addReviewBtn {
+        padding: 0.75rem 1.25rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* ===================================
+   Instructor Response Styles
+   =================================== */
+.instructor-response {
+    background: #f0f4f8;
+    border-left: 4px solid #3b82f6;
+    padding: 1.25rem;
+    margin: 1rem 0 1.5rem;
+    border-radius: 6px;
+}
+
+.response-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+    font-size: 0.875rem;
+}
+
+.instructor-badge {
+    display: inline-block;
+    background: #3b82f6;
+    color: white;
+    padding: 0.375rem 0.75rem;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.75rem;
+}
+
+.response-date {
+    color: #6b7280;
+    font-size: 0.85rem;
+}
+
+.instructor-response p {
+    color: #1f2937;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.btn-respond {
+    background: #3b82f6;
+    color: white;
+    border: none;
+}
+
+.btn-respond:hover {
+    background: #2563eb;
+}
+
+.respond-modal .modal-content {
+    width: 90%;
+    max-width: 500px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.respond-modal .modal-header {
+    padding: 1.5rem;
+    border-bottom: 1px solid #e5e7eb;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.respond-modal .modal-header h2 {
+    margin: 0;
+    font-size: 1.25rem;
+}
+
+.respond-modal .modal-close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #6b7280;
+}
+
+.respond-modal .modal-body {
+    padding: 1.5rem;
+}
+
+.respond-modal .form-group {
+    margin-bottom: 1.5rem;
+}
+
+.respond-modal .form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #1f2937;
+}
+
+.respond-modal .form-control {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 0.95rem;
+}
+
+.respond-modal .form-control:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* Edit Review Modal Styles */
+.edit-review-modal .modal-content {
+    width: 90%;
+    max-width: 600px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.edit-review-modal .modal-header {
+    padding: 1.5rem;
+    border-bottom: 1px solid #e5e7eb;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.edit-review-modal .modal-header h2 {
+    margin: 0;
+    font-size: 1.25rem;
+    color: #1f2937;
+}
+
+.edit-review-modal .modal-close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #6b7280;
+    transition: color 0.3s ease;
+}
+
+.edit-review-modal .modal-close:hover {
+    color: #1f2937;
+}
+
+.edit-review-modal .modal-body {
+    padding: 1.5rem;
+    max-height: calc(90vh - 120px);
+    overflow-y: auto;
+}
+
+.edit-review-modal form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.edit-review-modal .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.edit-review-modal .form-group label {
+    font-weight: 600;
+    color: #1f2937;
+    font-size: 0.95rem;
+}
+
+.edit-review-modal .star-rating {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: flex-start;
+}
+
+.edit-review-modal .star-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.25rem;
+    transition: transform 0.2s ease;
+    font-size: 1.75rem;
+    color: #d1d5db;
+}
+
+.edit-review-modal .star-btn:hover {
+    transform: scale(1.2);
+}
+
+.edit-review-modal .rating-text {
+    font-size: 0.875rem;
+    color: #6b7280;
+    font-weight: 500;
+}
+
+.edit-review-modal .form-control {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 0.95rem;
+    resize: vertical;
+}
+
+.edit-review-modal .form-control:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.edit-review-modal .btn-primary {
+    background: #3b82f6;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    align-self: flex-start;
+}
+
+.edit-review-modal .btn-primary:hover {
+    background: #2563eb;
+}
+
+/* Edit Button Styles */
+.btn-edit {
+    background: #10b981 !important;
+    color: white !important;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem !important;
+    font-size: 0.875rem;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-edit:hover {
+    background: #059669 !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+.btn-edit .material-icons {
+    font-size: 1rem;
+}
+/* ===================================
+   Related Courses Section Styles
+   =================================== */
+
+.related-courses-section {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid #e5e7eb;
+}
+
+.related-courses-section h2 {
+    font-size: 1.875rem;
+    color: var(--dark);
+    margin-bottom: 2rem;
+    font-weight: 700;
+}
+
+.related-courses-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1.5rem;
+}
+
+/* Course Card */
+.course-card {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    cursor: pointer;
+}
+
+.course-card:hover {
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+    transform: translateY(-4px);
+}
+
+.course-card:hover .course-thumbnail img {
+    transform: scale(1.05);
+}
+
+/* Course Thumbnail */
+.course-thumbnail {
+    position: relative;
+    width: 100%;
+    height: 140px;
+    overflow: hidden;
+    background: #f3f4f6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.course-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+/* Course Info */
+.course-info {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    flex-grow: 1;
+}
+
+.course-info h3 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--dark);
+    line-height: 1.4;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    display: -webkit-box;
+    margin: 0;
+}
+
+/* Course Rating */
+.course-rating {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    color: #6b7280;
+}
+
+.course-rating .material-icons {
+    font-size: 1rem;
+    color: #fbbf24;
+}
+
+.course-rating span:nth-child(2) {
+    font-weight: 600;
+    color: var(--dark);
+}
+
+.rating-count {
+    font-size: 0.8rem;
+    color: #9ca3af;
+}
+
+/* Course Price */
+.course-price {
+    margin-top: auto;
+    padding-top: 0.75rem;
+    border-top: 1px solid #f3f4f6;
+}
+
+.course-price span {
+    display: block;
+    font-weight: 700;
+    color: #1f2937;
+    font-size: 1rem;
+}
+
+/* Placeholder Text */
+.placeholder-text {
+    text-align: center;
+    color: #9ca3af;
+    font-size: 0.95rem;
+    padding: 2rem 1rem;
+    background: #f9fafb;
+    border-radius: 8px;
+    border: 1px dashed #d1d5db;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .related-courses-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 1.25rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .related-courses-section {
+        margin-top: 1rem;
+        padding-top: 1rem;
+    }
+    
+    .related-courses-section h2 {
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .related-courses-grid {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 1rem;
+    }
+    
+    .course-thumbnail {
+        height: 110px;
+    }
+    
+    .course-info {
+        padding: 0.75rem;
+        gap: 0.5rem;
+    }
+    
+    .course-info h3 {
+        font-size: 0.85rem;
+    }
+    
+    .course-rating {
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .related-courses-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.75rem;
+    }
+    
+    .course-thumbnail {
+        height: 90px;
+    }
+    
+    .course-info {
+        padding: 0.5rem;
+        gap: 0.4rem;
+    }
+    
+    .course-info h3 {
+        font-size: 0.8rem;
+        -webkit-line-clamp: 2;
+    }
+    
+    .course-price span {
+        font-size: 0.9rem;
+    }
+}
+/* ===================================
+   Share Modal Styles
+   =================================== */
+
+.modal-body {
+    padding: 1.5rem 2rem 2rem;
+}
+
+.modal-body label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #1f2937;
+    font-size: 0.9375rem;
+}
+
+.share-social-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 16px;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    background: white;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-weight: 500;
+    font-size: 0.9375rem;
+    color: #1f2937;
+    outline: none;
+}
+
+.share-social-btn:hover {
+    background: #f3f4f6;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-color: #d1d5db;
+}
+
+.share-social-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.share-social-btn svg {
+    flex-shrink: 0;
+}
+
+#shareCourseUrl {
+    flex: 1;
+    padding: 12px;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    color: #1f2937;
+    background: #f9fafb;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+#shareCourseUrl:focus {
+    border-color: #6366f1;
+    background: white;
+}
+
+#copyCourseLink {
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 20px;
+}
+
+#copyCourseLink:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(99, 102, 241, 0.3);
+}
+
+/* Modal backdrop animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Share modal specific styles */
+#shareModal .modal-content {
+    max-width: 500px;
+}
+
+#shareModal .modal-header {
+    border-bottom: 2px solid #f3f4f6;
+}
+
+/* Responsive share modal */
+@media (max-width: 640px) {
+    #shareModal .modal-content {
+        max-width: 95%;
+        margin: 1rem;
+    }
+    
+    .modal-body {
+        padding: 1rem 1.5rem 1.5rem;
+    }
+    
+    .share-social-btn {
+        padding: 10px 12px;
+        font-size: 0.875rem;
+    }
+    
+    #shareCourseUrl {
+        font-size: 0.8125rem;
+    }
+    
+    #copyCourseLink {
+        padding: 10px 16px;
+    }
+}
